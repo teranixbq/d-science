@@ -1,41 +1,44 @@
 {{ define "main" }}
-<div class="editorial-grid" style="display: grid; grid-template-columns: 1fr 350px; gap: 3rem; margin-bottom: 5rem; align-items: start; ">
+{{ $showSidebar := or .Site.Params.ads.enable_sidebar .Site.Params.sidebar.enable_trending }}
+<div class="editorial-grid index-editorial-grid {{ if $showSidebar }}index-editorial-grid-sidebar{{ end }}">
     <!-- Main Articles Column -->
-    <div class="articles-column" style="padding-right: 3rem; border-right: 1px dashed var(--border-dashed);">
-        <h1 class="sidebar-section-title" style="margin-bottom: 2.5rem; font-size: 2.5rem; text-transform: uppercase; line-height: 1.2;">Latest Articles</h1>
+    <div class="articles-column {{ if $showSidebar }}index-articles-column{{ else }}index-articles-column-full{{ end }}">
+        <h1 class="sidebar-section-title index-section-title">{{ i18n "latest_articles" }}</h1>
         
         <div class="articles-grid">
             {{ $reports := where .Site.RegularPages "Section" "reports" }}
             {{ $paginator := .Paginate $reports }}
             {{ range $paginator.Pages }}
-            <div class="article-card" style="margin-bottom: 2.5rem;">
-                <div class="meta" style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; font-weight: 700;">
-                    {{ with .Params.categories }}{{ index . 0 }}{{ else }}Analysis{{ end }}
+            <div class="article-card index-article-card">
+                <div class="meta index-article-meta">
+                    {{ with .Params.categories }}{{ index . 0 }}{{ else }}{{ i18n "analysis" }}{{ end }}
                 </div>
                 
                 <h3 class="grid-title">
-                    <a href="{{ .RelPermalink }}" style="text-decoration: none; color: var(--text-primary);">{{ .Title }}</a>
+                    <a href="{{ .RelPermalink }}" class="index-article-title-link">{{ .Title }}</a>
                 </h3>
                 
                 <p class="grid-preview">
                     {{ .Summary | plainify | htmlUnescape | truncate 150 }}
                 </p>
 
-                <div class="reading-meta" style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-dashed);">
+                <div class="reading-meta index-article-reading-meta">
                     {{ .Date.Format "Jan 2, 2006" }}
                 </div>
             </div>
             {{ end }}
         </div>
 
-        <div style="margin-top: 1.5rem;">
+        <div class="index-pagination-container">
             {{ partial "pagination.html" . }}
         </div>
     </div>
 
+    {{ if $showSidebar }}
     <!-- Right Sidebar Column -->
     <aside class="sidebar-column">
         {{ partial "right-sidebar.html" . }}
     </aside>
+    {{ end }}
 </div>
 {{ end }}

@@ -1,4 +1,6 @@
 baseURL = 'https://example.com/'
+theme = 'd-science'
+themesDir = '../..'
 languageCode = 'en-us'
 title = 'D-Science Theme | Teranix Notes'
 [pagination]
@@ -6,6 +8,7 @@ title = 'D-Science Theme | Teranix Notes'
 
 [params]
     enableComments = true
+    favicon = "/images/favicon.ico"
     description = "A collection of notes, while I still have a mind to learn until God takes my breath away. In the era of AI, don't grow so lazy that your mind becomes dull—for tools only make things easier, they are no substitute for your own reason."
     author = "Teranix"
     
@@ -25,7 +28,7 @@ title = 'D-Science Theme | Teranix Notes'
         article_code = "<!-- In-Article Ad Code -->"
 
     [params.giscus]
-        enable = true
+        enable = false
         repo = "username/repository"
         repoId = "R_kgDOSsfz5Q"
         category = "General"
@@ -51,3 +54,20 @@ title = 'D-Science Theme | Teranix Notes'
     [markup.highlight]
         noClasses = false
         style = "monokai" # We can override this in CSS to match vintage style
+
+[menu]
+  [[menu.main]]
+    identifier = "reports"
+    name = "Reports"
+    url = "/reports/"
+    weight = 10
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    identifier = "explore"
+    name = "Explore"
+    url = "/explore/"
+    weight = 15

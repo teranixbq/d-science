@@ -1,0 +1,53 @@
+[abstract_title]
+other = "Abstract / TL;DR"
+
+[classifications]
+other = "Classifications"
+
+[related_articles]
+other = "Related Articles"
+
+[analysis]
+other = "Analysis"
+
+[back_to_reports]
+other = "Back to all reports"
+
+[archive]
+other = "Archive"
+
+[sponsor]
+other = "Sponsor"
+
+[trending]
+other = "Trending"
+
+[trending_datasets]
+other = "Trending Datasets"
+
+[trending_models_unavailable]
+other = "Trending models currently unavailable."
+
+[trending_datasets_unavailable]
+other = "Trending datasets currently unavailable."
+
+[previous_page]
+other = "Previous Page"
+
+[page]
+other = "PAGE"
+
+[of]
+other = "OF"
+
+[next_page]
+other = "Next Page"
+
+[latest_articles]
+other = "Latest Articles"
+
+[previous_note]
+other = "Previous Note"
+
+[next_note]
+other = "Next Note"
