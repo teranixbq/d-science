@@ -1,0 +1,53 @@
+baseURL = 'https://example.com/'
+languageCode = 'en-us'
+title = 'D-Science Theme | Teranix Notes'
+[pagination]
+    pagerSize = 10
+
+[params]
+    enableComments = true
+    description = "A collection of notes, while I still have a mind to learn until God takes my breath away. In the era of AI, don't grow so lazy that your mind becomes dull—for tools only make things easier, they are no substitute for your own reason."
+    author = "Teranix"
+    
+    [params.style]
+        font_mono = "'IBM Plex Mono', 'Courier New', Courier, monospace"
+        bg_primary = "#F5F0E8"
+        text_primary = "#2C2C2C"
+        border_dashed = "#B0A99F"
+
+    [params.sidebar]
+        enable_trending = true # Set to false to hide Kaggle/HuggingFace trending
+
+    [params.ads]
+        enable_sidebar = false
+        sidebar_code = "<!-- Sidebar Ad Code -->"
+        enable_in_article = false
+        article_code = "<!-- In-Article Ad Code -->"
+
+    [params.giscus]
+        enable = true
+        repo = "username/repository"
+        repoId = "R_kgDOSsfz5Q"
+        category = "General"
+        categoryId = "DIC_kwDOSsfz5c4C-K-X"
+        mapping = "url"
+        strict = "0"
+        reactionsEnabled = "1"
+        emitMetadata = "0"
+        inputPosition = "top"
+        theme = "light_protanopia"
+        lang = "en"
+        loading = "lazy"
+
+[taxonomies]
+    tag = "tags"
+    category = "categories"
+    series = "series"
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true # Allow HTML in Markdown if needed
+    [markup.highlight]
+        noClasses = false
+        style = "monokai" # We can override this in CSS to match vintage style

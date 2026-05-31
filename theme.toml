@@ -1,0 +1,15 @@
+name = "d-science"
+license = "MIT"
+licenselink = "https://github.com/teranixbq/d-science/blob/main/LICENSE"
+description = "A vintage data science report theme for Hugo."
+homepage = "https://github.com/teranixbq/d-science"
+tags = ["blog", "vintage", "data science", "report", "clean", "minimalist"]
+features = ["blog", "vintage", "charts", "giscus"]
+min_version = "0.110.0"
+
+[author]
+  name = "Teranix"
+  homepage = "https://github.com/teranixbq"
+
+# If porting an existing theme
+  homepage = "https://github.com/username/repository"

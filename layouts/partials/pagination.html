@@ -1,0 +1,13 @@
+{{ if gt .Paginator.TotalPages 1 }}
+<nav class="pagination" style="display: flex; justify-content: center; gap: 1rem;">
+    {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}" style="font-weight: 700; text-transform: uppercase; font-size: 0.8rem;">← Previous Page</a>
+    {{ end }}
+    
+    <span style="font-size: 0.8rem; color: var(--text-muted);">PAGE {{ .Paginator.PageNumber }} OF {{ .Paginator.TotalPages }}</span>
+
+    {{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}" style="font-weight: 700; text-transform: uppercase; font-size: 0.8rem;">Next Page →</a>
+    {{ end }}
+</nav>
+{{ end }}

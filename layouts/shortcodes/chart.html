@@ -1,0 +1,42 @@
+<div class="chart-wrapper">
+    {{ if .Get "title" }}<div class="chart-title">{{ .Get "title" }}</div>{{ end }}
+    {{ $chartID := .Get "id" | default (printf "chart-%d" (now.UnixNano)) }}
+    <canvas id="{{ $chartID }}"></canvas>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('{{ $chartID }}').getContext('2d');
+    
+    // Vintage Colors from SKILL
+    const inkBlack = '#2C2C2C';
+    const sepia = '#8B5A2B';
+    const brickRed = '#A52A2A';
+    const navy = '#1A365D';
+    
+    const data = {{ .Inner | safeJS }};
+    
+    new Chart(ctx, {
+        type: '{{ .Get "type" | default "line" }}',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    grid: { borderDash: [5, 5], color: '#B0A99F' },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
+                }
+            }
+        }
+    });
+});
+</script>

@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="article-content">
+    <h1>Archive: {{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    
+    <div style="margin-top: 3rem;">
+        {{ range .Paginator.Pages }}
+        <article style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--border-dashed);">
+            <div style="font-size: 0.8rem; color: var(--text-muted);">{{ .Date.Format "2006.01.02" }}</div>
+            <h2 style="margin-top: 0.5rem; border: none; padding-bottom: 0; font-size: 1.25rem;"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+</div>
+{{ end }}

@@ -1,0 +1,407 @@
+:root {
+  /* Colors - StockTaper / Data Science Report */
+  --bg-primary: #F5F0E8;
+  --bg-secondary: #EDE8DF;
+  --bg-code: #2C2C2C;
+  --text-primary: #2C2C2C;
+  --text-body: #3D3D3D;
+  --text-muted: #6B6B6B;
+  --text-code-light: #F5F0E8;
+  --border-primary: #C4BEB4;
+  --border-dashed: #B0A99F;
+  --border-dark: #2C2C2C;
+
+  /* Typography */
+  --font-mono: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-body);
+  font-family: var(--font-mono);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  padding: 0 1rem;
+}
+
+/* Typography Overrides - ALL MONOSPACE */
+h1, h2, h3, h4, h5, h6, p, a, span, div, table, code, pre {
+  font-family: var(--font-mono) !important;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed var(--border-dashed);
+  padding-bottom: 0.5rem;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #000;
+}
+
+/* Layout System */
+.container {
+  max-width: 1400px; /* Wider for full editorial feel */
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+}
+
+.articles-column {
+  border-right: 1px dashed var(--border-dashed);
+  padding-right: 3rem;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Article Cards */
+.article-card {
+  margin-bottom: 3rem;
+}
+
+.article-card .meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.article-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.article-card p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin-bottom: 1rem;
+}
+
+.article-card .reading-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.article-card img {
+  width: 100%;
+  filter: grayscale(100%) contrast(120%);
+  margin-top: 1rem;
+  border: 1px dashed var(--border-dashed);
+}
+
+/* Sidebar Widgets */
+.sidebar-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: none;
+}
+
+.widget-subtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.data-row {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border-dashed);
+  font-size: 0.85rem;
+}
+
+.data-row:last-child {
+  border-bottom: none;
+}
+
+.data-row .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.75rem;
+  background: #eee; /* Placeholder for logo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.data-row .label-group {
+  flex-grow: 1;
+}
+
+.data-row .ticker {
+  font-weight: 700;
+  display: block;
+}
+
+.data-row .name {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.data-row .value {
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Related Articles Section */
+.related-articles {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 2px solid var(--border-dark);
+  text-align: center;
+}
+
+.related-articles .section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 4rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Drop Cap - Large first letter for articles */
+.content > p:first-of-type::first-letter {
+  float: left;
+  font-size: 4rem;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+/* Chart Container - Vintage Style */
+.chart-wrapper {
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border: 1px dashed var(--border-dashed);
+  background: transparent;
+  position: relative;
+}
+
+.chart-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 1px dashed var(--border-dashed);
+  padding-bottom: 0.5rem;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+header {
+  border-bottom: 2px solid var(--border-dark);
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-box {
+  border: 2px solid var(--border-dark);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Article Content Column */
+.article-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Breakout wide elements */
+.breakout-wide {
+  width: 100%;
+  max-width: 1024px;
+  margin: 2rem auto;
+}
+
+/* Data Tables - Ledger Style */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  border-top: 2px solid var(--text-primary);
+  border-bottom: 2px solid var(--text-primary);
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-bottom: 2px dashed var(--border-dashed);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px dashed var(--border-dashed);
+}
+
+/* Code Blocks - Teletype style */
+pre {
+  background: var(--bg-code);
+  color: var(--text-code-light);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--border-dark);
+}
+
+code {
+  font-size: 0.85rem;
+}
+
+/* Abstract Box */
+.abstract {
+  background: var(--bg-secondary);
+  border: 2px solid var(--text-primary);
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.abstract-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 5rem;
+  padding: 3rem 0;
+  border-top: 1px dashed var(--border-dashed);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Grid Alignment Helpers */
+.grid-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.5rem;
+}
+.grid-preview {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5.4rem;
+}
+
+/* Custom thin scrollbar specific to sidebar */
+.sidebar-column {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.trending-scroll-area:hover {
+  scrollbar-color: var(--border-dashed) transparent;
+}
+.trending-scroll-area::-webkit-scrollbar {
+  width: 4px;
+}
+.trending-scroll-area::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.trending-scroll-area::-webkit-scrollbar-thumb {
+  /* Using box-shadow to force repaint in WebKit/Blink browsers */
+  background-color: transparent;
+  box-shadow: inset 0 0 0 4px rgba(176, 169, 159, 0);
+  border-radius: 4px;
+}
+/* Show thumb when hovering anywhere over the sidebar */
+.trending-scroll-area:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 4px var(--border-dashed);
+}
+.trending-scroll-area::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 0 4px var(--text-muted);
+}
+
+/* Markdown Content Formatting */
+.content ul, .content ol {
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.content li::marker {
+  font-weight: 700;
+  color: var(--text-primary);
+}

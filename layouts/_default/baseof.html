@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- IBM Plex Mono Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for Vintage Data Viz -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    {{ $style := resources.Get "css/main.css" | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo-box">
+                {{ .Site.Title }}
+            </a>
+            <nav>
+                <a href="/reports/">Reports</a>
+                <a href="/about/">About</a>
+            </nav>
+        </header>
+
+        <main>
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        <footer>
+            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author }}. A collection of notes.</p>
+            <p>while I still have a mind to learn until God takes my breath away</p>
+        </footer>
+    </div>
+</body>
+</html>
