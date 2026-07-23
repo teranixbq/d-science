@@ -6,4 +6,4 @@ type: "explore"
 layout: "explore"
 ---
 
-Explore the blog's content through data visualization and interactive graphs.
+Explore the blog's content through data visualization.

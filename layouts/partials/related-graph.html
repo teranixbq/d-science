@@ -1,195 +1,48 @@
-<!-- Related Articles Graph -->
-<div id="related-graph-container" style="width: 100%; height: 400px; border: 1px dashed var(--border-dashed); margin: 2rem 0; background: var(--bg-primary);"></div>
+{{/* Related Articles: same section + overlapping tags, max 3 */}}
+{{ $current := . }}
+{{ $currentTags := .Params.tags | default slice }}
+{{ $currentSection := .Section }}
 
-<!-- We assume Vis.js is already included or we include it here. It's safe to include it again from CDN as it caches, or we just put the script here -->
-{{ $vis := resources.Get "js/vis-network.min.js" }}
-<script src="{{ $vis.RelPermalink }}"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const nodes = [];
-    const edges = [];
-    const addedNodes = new Set();
+{{ $related := slice }}
 
-    // Vintage Theme Colors
-    const colorCurrent = {
-        background: '#B0A99F', // Highlighted current article
-        border: '#2C2C2C',
-        hover: { background: '#C4BEB4', border: '#2C2C2C' },
-        highlight: { background: '#2C2C2C', border: '#B0A99F', color: '#F5F0E8' }
-    };
-    const colorArticle = {
-        background: '#EDE8DF', // Other articles
-        border: '#2C2C2C',
-        hover: { background: '#C4BEB4', border: '#2C2C2C' },
-        highlight: { background: '#B0A99F', border: '#2C2C2C' }
-    };
-    const colorAuthor = {
-        background: '#3D3D3D', // Author node
-        border: '#2C2C2C',
-        hover: { background: '#000000', border: '#000000' }
-    };
-    const colorCategory = {
-        background: '#2C2C2C', // Category node
-        border: '#2C2C2C',
-        hover: { background: '#3D3D3D', border: '#3D3D3D' }
-    };
-
-    const fontArticle = { color: '#2C2C2C', face: 'IBM Plex Mono', size: 14 };
-    const fontCurrent = { color: '#2C2C2C', face: 'IBM Plex Mono', size: 16, bold: true };
-    const fontDark = { color: '#F5F0E8', face: 'IBM Plex Mono', size: 12 };
-
-    // 1. Add Current Article (Center Node)
-    const currentId = 'current_article';
-    nodes.push({
-        id: currentId,
-        label: '{{ .Title | truncate 25 }}',
-        title: 'Current: {{ .Title }}',
-        shape: 'box',
-        color: colorCurrent,
-        font: fontCurrent,
-        borderWidth: 2,
-        shadow: true
-    });
-    addedNodes.add(currentId);
-
-    // 2. Add Author Node
-    {{ $authorName := .Site.Params.author }}
-    {{ if .Params.author }}{{ $authorName = .Params.author }}{{ end }}
-    const authorId = 'author_{{ $authorName | urlize }}';
-    nodes.push({
-        id: authorId,
-        label: '👤 {{ $authorName }}',
-        title: 'Author: {{ $authorName }}',
-        shape: 'ellipse',
-        color: colorAuthor,
-        font: fontDark,
-        shadow: true
-    });
-    addedNodes.add(authorId);
-    edges.push({
-        from: currentId, to: authorId,
-        color: { color: '#B0A99F' }, width: 2, dashes: false, label: 'authored by', font: {size: 10, face: 'IBM Plex Mono', color: '#6B6B6B'}
-    });
-
-    // 3. Add Category Node
-    {{ if .Params.categories }}
-    {{ $cat := index .Params.categories 0 }}
-    const categoryId = 'category_{{ $cat | urlize }}';
-    nodes.push({
-        id: categoryId,
-        label: '📁 {{ $cat }}',
-        title: 'Category: {{ $cat }}',
-        url: '{{ $.Site.BaseURL }}categories/{{ $cat | urlize }}/',
-        shape: 'ellipse',
-        color: colorCategory,
-        font: fontDark,
-        shadow: true
-    });
-    addedNodes.add(categoryId);
-    edges.push({
-        from: currentId, to: categoryId,
-        color: { color: '#B0A99F' }, width: 2, dashes: true, label: 'filed under', font: {size: 10, face: 'IBM Plex Mono', color: '#6B6B6B'}
-    });
+{{ range .Site.RegularPages }}
+  {{ if and (ne .Permalink $current.Permalink) (eq .Section $currentSection) }}
+    {{ $pageTags := .Params.tags | default slice }}
+    {{ $overlap := false }}
+    {{ range $currentTags }}
+      {{ if in $pageTags . }}
+        {{ $overlap = true }}
+      {{ end }}
     {{ end }}
-
-    // 4. Add Related Articles (Max 5)
-    {{ $related := .Site.RegularPages.Related . | first 5 }}
-    {{ range $index, $page := $related }}
-        {{ $relId := print "related_" $index }}
-        nodes.push({
-            id: '{{ $relId }}',
-            label: '{{ .Title | truncate 25 }}',
-            title: '{{ .Title }}',
-            url: '{{ .RelPermalink }}',
-            shape: 'box',
-            color: colorArticle,
-            font: fontArticle,
-            borderWidth: 1,
-            shadow: true
-        });
-        
-        // Determine related article's author
-        {{ $relAuthor := .Site.Params.author }}
-        {{ if .Params.author }}{{ $relAuthor = .Params.author }}{{ end }}
-        {{ $relAuthorId := print "author_" ($relAuthor | urlize) }}
-        
-        if (!addedNodes.has('{{ $relAuthorId }}')) {
-            nodes.push({
-                id: '{{ $relAuthorId }}',
-                label: '👤 {{ $relAuthor }}',
-                title: 'Author: {{ $relAuthor }}',
-                shape: 'ellipse',
-                color: colorAuthor,
-                font: fontDark,
-                shadow: true
-            });
-            addedNodes.add('{{ $relAuthorId }}');
-        }
-
-        // Connect related article to current article
-        edges.push({
-            from: '{{ $relId }}',
-            to: currentId,
-            color: { color: '#B0A99F' }, width: 1, dashes: true, label: 'related', font: {size: 10, face: 'IBM Plex Mono', color: '#6B6B6B'}
-        });
-        
-        // Connect related article to its specific author
-        edges.push({
-            from: '{{ $relId }}',
-            to: '{{ $relAuthorId }}',
-            color: { color: '#B0A99F' }, width: 1, dashes: true, label: 'authored by', font: {size: 10, face: 'IBM Plex Mono', color: '#6B6B6B'}
-        });
-
+    {{ if $overlap }}
+      {{ $related = $related | append . }}
     {{ end }}
+  {{ end }}
+{{ end }}
 
-    const container = document.getElementById('related-graph-container');
-    const data = { nodes: nodes, edges: edges };
-    const options = {
-        physics: {
-            forceAtlas2Based: {
-                gravitationalConstant: -50,
-                centralGravity: 0.01,
-                springLength: 100,
-                springConstant: 0.08
-            },
-            maxVelocity: 50,
-            solver: 'forceAtlas2Based',
-            timestep: 0.35,
-            stabilization: { iterations: 150 }
-        },
-        interaction: {
-            hover: true,
-            tooltipDelay: 200,
-            zoomView: false, // Disable scroll zoom so it doesn't interrupt page scrolling
-            dragView: true
-        },
-        nodes: {
-            margin: 10,
-            shapeProperties: { borderRadius: 0 }
-        }
-    };
+{{/* Sort by date descending and limit to 3 */}}
+{{ $related = sort $related "Date" "desc" }}
+{{ $related = first 3 $related }}
 
-    const network = new vis.Network(container, data, options);
-
-    // Make nodes clickable
-    network.on("click", function(params) {
-        if (params.nodes.length > 0) {
-            const nodeId = params.nodes[0];
-            const node = nodes.find(n => n.id === nodeId);
-            if (node && node.url) {
-                window.location.href = node.url;
-            }
-        }
-    });
-
-    network.on("hoverNode", function(params) {
-        const node = nodes.find(n => n.id === params.node);
-        if (node && node.url) {
-            container.style.cursor = 'pointer';
-        }
-    });
-    network.on("blurNode", function() {
-        container.style.cursor = 'default';
-    });
-});
-</script>
+{{ if $related }}
+<div class="related-articles-grid">
+  {{ range $related }}
+  <div class="article-card-single">
+    <div class="article-card-meta">
+      {{ with .Params.categories }}{{ index . 0 }}{{ else }}Analysis{{ end }}
+    </div>
+    <h3 class="grid-title">
+      <a href="{{ .RelPermalink }}" class="article-card-title-link">{{ .Title }}</a>
+    </h3>
+    <p class="grid-preview">
+      {{ .Summary | plainify | htmlUnescape | truncate 120 }}
+    </p>
+    <div class="article-card-reading-meta">
+      {{ .Date.Format "Jan 2, 2006" }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ else }}
+<p class="article-card-meta">No related articles found.</p>
+{{ end }}

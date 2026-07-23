@@ -1,7 +1,7 @@
 {{ if .Site.Params.ads.enable_sidebar }}
 <!-- Sidebar Ad -->
 <div class="sidebar-widget sidebar-ad-widget">
-    <h3 class="sidebar-section-title sidebar-ad-title">{{ i18n "sponsor" }}</h3>
+    <div class="sidebar-section-title sidebar-ad-title">{{ i18n "sponsor" }}</div>
     <div class="sidebar-ad-container">
         {{ .Site.Params.ads.sidebar_code | safeHTML }}
     </div>
@@ -12,7 +12,7 @@
 <!-- Trending Area (Scrollable) -->
 <div class="trending-scroll-area trending-container">
     <div class="sidebar-widget trending-widget">
-        <h3 class="sidebar-section-title trending-main-title">{{ i18n "trending" }}</h3>
+        <div class="sidebar-section-title trending-main-title">{{ i18n "trending" }}</div>
         
         <div class="trending-section"> 
             <div class="sidebar-title">Hugging Face</div>

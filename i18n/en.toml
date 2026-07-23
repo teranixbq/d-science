@@ -47,7 +47,7 @@ other = "Next Page"
 other = "Latest Articles"
 
 [previous_note]
-other = "Previous Note"
+other = "Previous Article"
 
 [next_note]
-other = "Next Note"
+other = "Next Article"
