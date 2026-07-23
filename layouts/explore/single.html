@@ -98,6 +98,26 @@ window.addEventListener('DOMContentLoaded', function() {
         ];
     }
 
+    function barAxesRotated(labels) {
+        const truncated = labels.map(l => l.length > 12 ? l.slice(0, 12) + '…' : l);
+        return [
+            {
+                values: (u, vs) => vs.map(v => truncated[v] !== undefined ? truncated[v] : ''),
+                font: `11px ${MONO}`, stroke: INK,
+                grid: { show: false },
+                ticks: { stroke: BORDER, width: 1 },
+                rotate: -30,
+                gap: 5,
+                size: 80,
+            },
+            {
+                font: `12px ${MONO}`, stroke: INK,
+                grid: { stroke: BORDER, dash: [4, 4], width: 1 },
+                ticks: { show: false }
+            }
+        ];
+    }
+
     // ── HTML Tooltip ──────────────────────────────────────────────
     const tooltip = document.createElement('div');
     tooltip.style.cssText = `
@@ -188,9 +208,9 @@ window.addEventListener('DOMContentLoaded', function() {
     const tagXs      = Array.from({ length: tagLabels.length }, (_, i) => i);
 
     const tagsChart = new uPlot({
-        width: W(), height: 300,
+        width: W(), height: 340,
         scales: { x: { time: false }, y: { range: [0, Math.max(...tagVals, 1) + 1] } },
-        axes: barAxesNoLabel(),
+        axes: barAxesRotated(tagLabels),
         series: barSeries('Count'),
         legend: { show: false },
         cursor: { show: true }
@@ -208,9 +228,9 @@ window.addEventListener('DOMContentLoaded', function() {
     const catXs     = Array.from({ length: catLabels.length }, (_, i) => i);
 
     const catChart = new uPlot({
-        width: W(), height: 280,
+        width: W(), height: 320,
         scales: { x: { time: false }, y: { range: [0, Math.max(...catVals, 1) + 1] } },
-        axes: barAxesNoLabel(),
+        axes: barAxesRotated(catLabels),
         series: barSeries('Articles'),
         legend: { show: false },
         cursor: { show: true }
@@ -221,8 +241,8 @@ window.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
         const w = W();
         if (monthlyChart) monthlyChart.setSize({ width: w, height: 260 });
-        if (tagsChart)    tagsChart.setSize({ width: w, height: 300 });
-        if (catChart)     catChart.setSize({ width: w, height: 280 });
+        if (tagsChart)    tagsChart.setSize({ width: w, height: 340 });
+        if (catChart)     catChart.setSize({ width: w, height: 320 });
     });
 })();
 });
