@@ -26,99 +26,85 @@
     </div>
 </div>
 
+{{/* Build data as Hugo dict, inject as JSON */}}
+{{ $data := dict }}
+{{ $sections := slice }}
+{{ range .Site.RegularPages }}
+    {{ if and (ne .Section "") (not (in $sections .Section)) }}
+        {{ $sections = $sections | append .Section }}
+    {{ end }}
+{{ end }}
+{{ range sort ($sections | uniq) }}
+{{ $section := . }}
+{{ $articles := slice }}
+{{ range where $.Site.RegularPages "Section" $section }}
+    {{ $articles = $articles | append (dict "title" (.Title | plainify) "url" .RelPermalink "date" (.Date.Format "02/01/2006")) }}
+{{ end }}
+{{ $data = merge $data (dict $section $articles) }}
+{{ end }}
+
 <script>
 (function() {
     'use strict';
-    
-    // Build articles data grouped by section
-    const articlesBySection = {
-        {{ $sections := slice }}
-        {{ range .Site.RegularPages }}
-            {{ if and (ne .Section "") (not (in $sections .Section)) }}
-                {{ $sections = $sections | append .Section }}
-            {{ end }}
-        {{ end }}
-        {{ range sort ($sections | uniq) }}
-        {{ $section := . }}
-        {{ $section | jsonify }}: [
-            {{ range where $.Site.RegularPages "Section" $section }}
-            {
-                title: {{ .Title | plainify | jsonify }},
-                url: {{ .RelPermalink | jsonify }},
-                date: {{ .Date.Format "02/01/2006" | jsonify }}
-            },
-            {{ end }}
-        ],
-        {{ end }}
-    };
+
+    const articlesBySection = {{ $data | jsonify | safeJS }};
 
     function init() {
         const select = document.getElementById('section-select');
         const container = document.getElementById('articles-container');
-        
-        if (!select || !container) {
-            console.error('Archive elements not found');
-            return;
-        }
+
+        if (!select || !container) return;
 
         function renderArticles(section) {
             const articles = articlesBySection[section] || [];
-            
+
             if (articles.length === 0) {
                 const msg = container.getAttribute('data-no-articles') || 'No articles found in this section.';
                 container.innerHTML = '<p style="color: var(--text-muted);">' + msg + '</p>';
                 return;
             }
 
-            // Clear container first
             container.innerHTML = '';
-            
-            // Create article elements
+
             articles.forEach(article => {
                 const articleEl = document.createElement('article');
                 articleEl.className = 'list-article';
                 articleEl.style.cursor = 'pointer';
-                
+
                 const dateEl = document.createElement('div');
                 dateEl.className = 'list-article-date';
                 dateEl.textContent = article.date;
-                
+
                 const titleEl = document.createElement('h2');
                 titleEl.className = 'list-article-title';
-                
+
                 const linkEl = document.createElement('a');
                 linkEl.href = article.url;
                 linkEl.textContent = article.title;
-                
+
                 titleEl.appendChild(linkEl);
                 articleEl.appendChild(dateEl);
                 articleEl.appendChild(titleEl);
-                
-                // Add click handler to article element
+
                 articleEl.addEventListener('click', function(e) {
-                    // Prevent if clicking directly on link
                     if (e.target.tagName !== 'A') {
                         window.location.href = article.url;
                     }
                 });
-                
+
                 container.appendChild(articleEl);
             });
         }
 
-        // Set initial section
         if (select.options.length > 0) {
-            const firstSection = select.options[0].value;
-            renderArticles(firstSection);
+            renderArticles(select.options[0].value);
         }
 
-        // Handle section change
         select.addEventListener('change', function() {
             renderArticles(this.value);
         });
     }
-    
-    // Initialize when DOM is ready
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
