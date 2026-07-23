@@ -81,23 +81,6 @@ window.addEventListener('DOMContentLoaded', function() {
         ];
     }
 
-    function barAxesNoLabel() {
-        return [
-            {
-                values: () => [],
-                font: `11px ${MONO}`, stroke: INK,
-                grid: { show: false },
-                ticks: { stroke: BORDER, width: 1 },
-                gap: 0,
-            },
-            {
-                font: `12px ${MONO}`, stroke: INK,
-                grid: { stroke: BORDER, dash: [4, 4], width: 1 },
-                ticks: { show: false }
-            }
-        ];
-    }
-
     function barAxesRotated(labels) {
         const truncated = labels.map(l => l.length > 12 ? l.slice(0, 12) + '…' : l);
         return [
@@ -209,7 +192,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     const tagsChart = new uPlot({
         width: W(), height: 340,
-        scales: { x: { time: false }, y: { range: [0, Math.max(...tagVals, 1) + 1] } },
+        scales: { x: { time: false }, y: { range: [0, (tagVals.length > 0 ? Math.max(...tagVals) : 1) + 1] } },
         axes: barAxesRotated(tagLabels),
         series: barSeries('Count'),
         legend: { show: false },
@@ -229,7 +212,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     const catChart = new uPlot({
         width: W(), height: 320,
-        scales: { x: { time: false }, y: { range: [0, Math.max(...catVals, 1) + 1] } },
+        scales: { x: { time: false }, y: { range: [0, (catVals.length > 0 ? Math.max(...catVals) : 1) + 1] } },
         axes: barAxesRotated(catLabels),
         series: barSeries('Articles'),
         legend: { show: false },

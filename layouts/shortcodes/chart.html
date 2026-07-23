@@ -66,10 +66,10 @@ window.addEventListener('DOMContentLoaded', function() {
         ];
     }
 
-    const maxVal = Math.max(...values);
+    const maxVal = values.length > 0 ? Math.max(...values) : 0;
     const yMax   = maxVal <= 0 ? 10 : maxVal * 1.2;
 
-    new uPlot({
+    const chart = new uPlot({
         width:  W(),
         height: 260,
         scales: {
@@ -81,6 +81,10 @@ window.addEventListener('DOMContentLoaded', function() {
         legend: { show: ds.label ? true : false },
         cursor: { show: true }
     }, [xs, values], el);
+
+    window.addEventListener('resize', () => {
+        chart.setSize({ width: W(), height: 260 });
+    });
 })();
 });
 </script>

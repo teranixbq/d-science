@@ -24,7 +24,7 @@
     <meta property="og:description" content="{{ $description }}">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
-    {{ with .Params.image }}<meta property="og:image" content="{{ . }}">{{ end }}
+    {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
     {{ if .IsPage }}
     <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
     <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -32,18 +32,35 @@
     {{ end }}
 
     {{/* Twitter / X Card */}}
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="{{ if .Params.image }}summary_large_image{{ else }}summary{{ end }}">
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
     <meta name="twitter:description" content="{{ $description }}">
-    {{ with .Params.image }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+    {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
 
     <!-- IBM Plex Mono Font: async load to avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"
           media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
+
+    {{/* CSS variable injection from params.style */}}
+    {{ with .Site.Params.style }}
+    <style>
+    :root {
+        {{ with .font_mono }}--font-mono: {{ . }};{{ end }}
+        {{ with .bg_primary }}--bg-primary: {{ . }};{{ end }}
+        {{ with .bg_secondary }}--bg-secondary: {{ . }};{{ end }}
+        {{ with .text_primary }}--text-primary: {{ . }};{{ end }}
+        {{ with .text_body }}--text-body: {{ . }};{{ end }}
+        {{ with .text_muted }}--text-muted: {{ . }};{{ end }}
+        {{ with .border_primary }}--border-primary: {{ . }};{{ end }}
+        {{ with .border_dashed }}--border-dashed: {{ . }};{{ end }}
+        {{ with .border_dark }}--border-dark: {{ . }};{{ end }}
+    }
+    </style>
+    {{ end }}
 
     <!-- uPlot: load on pages that use the chart shortcode, or on the explore page -->
     {{ if or (.HasShortcode "chart") (eq .Layout "explore") }}

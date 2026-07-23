@@ -6,4 +6,4 @@ type: "archive"
 enablecomment: false
 ---
 
-Browse all articles by tag. Select a tag from the dropdown to filter articles.
+Browse all articles by section. Select a section from the dropdown to filter articles.

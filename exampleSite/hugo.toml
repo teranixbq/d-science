@@ -8,7 +8,6 @@ title = 'D-Science Theme | Teranix Notes'
     pagerSize = 9
 
 [params]
-    enableComments = true
     favicon = "/images/favicon.ico"
     description = "A collection of notes, while I still have a mind to learn until God takes my breath away. In the era of AI, don't grow so lazy that your mind becomes dull—for tools only make things easier, they are no substitute for your own reason."
     author = "Teranix"
