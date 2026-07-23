@@ -10,13 +10,13 @@
     <!-- Main Article Column -->
     <article class='article-content single-article-content {{ if $hasSidebar }}single-content-reports{{ end }}'>
         <header class="single-header">
-            {{ if eq .Section "reports" }}
+            {{ if ne .Section "" }}
             <div class="single-date-note">
                 {{ i18n "published" }}: {{ .Date.Format "02/01/2006" }}
             </div>
             {{ end }}
             <h1 class="single-title">{{ .Title }}</h1>
-            {{ if eq .Section "reports" }}
+            {{ if ne .Section "" }}
             <div class="single-author">
                 {{ i18n "author" }}: {{ with .Params.author }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}
             </div>
@@ -66,14 +66,13 @@
     {{ end }}
 </div>
 
-{{ if in (slice "reports" "information-retrieval") .Section }}
+{{ if ne .Section "" }}
 <!-- Related Articles Section (Full Width, Outside Grid) -->
 <div class="related-articles-container">
     <h2 class="section-title related-articles-title">{{ i18n "related_articles" }}</h2>
-    <!-- Interactive Related Articles Graph -->
     {{ partial "related-graph.html" . }}
     
-        <div class="article-nav">
+    <div class="article-nav">
         {{ with .NextInSection }}
         <a href="{{ .RelPermalink }}" class="article-nav-prev">← {{ i18n "previous_note" | default "Previous Note" }}</a>
         {{ end }}

@@ -5,9 +5,9 @@
 
     <!-- Stats Overview -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
-        {{ $totalArticles := len (where .Site.RegularPages "Section" "reports") }}
+        {{ $totalArticles := len .Site.RegularPages }}
         {{ $allTags := slice }}
-        {{ range where .Site.RegularPages "Section" "reports" }}
+        {{ range .Site.RegularPages }}
             {{ $allTags = $allTags | append .Params.tags }}
         {{ end }}
         {{ $uniqueTags := $allTags | uniq }}
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // ── Articles per Month ────────────────────────────────────────
     const allArticles = [
-        {{ range where .Site.RegularPages "Section" "reports" }}
+        {{ range .Site.RegularPages }}
         { year: '{{ .Date.Format "2006" }}', month: {{ .Date.Format "1" }} },
         {{ end }}
     ];
