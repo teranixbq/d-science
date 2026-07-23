@@ -1,0 +1,7 @@
+<div class="code-block-wrapper">
+  <div class="code-block-header">
+    <span class="code-lang-label">{{ with .Type }}{{ . }}{{ else }}code{{ end }}</span>
+    <button class="copy-btn" aria-label="Copy code" onclick="copyCode(this)">COPY</button>
+  </div>
+  {{ highlight .Inner .Type "" }}
+</div>

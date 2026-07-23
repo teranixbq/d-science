@@ -2,3 +2,34 @@
     <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author }}. {{ if .Site.Params.footer_title }}{{ .Site.Params.footer_title }}{{ else }}A collection of notes.{{ end }}</p>
     <p>{{ if .Site.Params.footer_quote }}{{ .Site.Params.footer_quote }}{{ else }}while I still have a mind to learn until God takes my breath away{{ end }}</p>
 </footer>
+
+<script>
+function copyCode(btn) {
+    const pre  = btn.closest('.code-block-wrapper').querySelector('pre');
+    const text = pre.innerText;
+    navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'COPIED';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = 'COPY';
+            btn.classList.remove('copied');
+        }, 2000);
+    }).catch(function() {
+        // fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity  = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = 'COPIED';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = 'COPY';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+</script>

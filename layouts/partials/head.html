@@ -15,10 +15,12 @@
           media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
     
-    <!-- Chart.js: load on pages that use the chart shortcode, or on the explore page -->
+    <!-- uPlot: load on pages that use the chart shortcode, or on the explore page -->
     {{ if or (.HasShortcode "chart") (eq .Layout "explore") }}
-    {{ $chart := resources.Get "js/chart.min.js" }}
-    <script src="{{ $chart.RelPermalink }}" defer></script>
+    {{ $uplotcss := resources.Get "css/uplot.min.css" }}
+    {{ $uplot := resources.Get "js/uplot.min.js" }}
+    <link rel="stylesheet" href="{{ $uplotcss.RelPermalink }}">
+    <script src="{{ $uplot.RelPermalink }}"></script>
     {{ end }}
     
     {{ $style := resources.Get "css/main.css" | fingerprint }}

@@ -2,7 +2,7 @@
 <div class="article-content">
     <h1>{{ .Title }}</h1>
     <p>{{ .Content }}</p>
-    
+
     <!-- Stats Overview -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
         {{ $totalArticles := len (where .Site.RegularPages "Section" "reports") }}
@@ -12,7 +12,7 @@
         {{ end }}
         {{ $uniqueTags := $allTags | uniq }}
         {{ $totalCategories := len .Site.Taxonomies.categories }}
-        
+
         <div style="border: 2px dashed var(--border-dashed); padding: 1.5rem; text-align: center;">
             <div style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">{{ $totalArticles }}</div>
             <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Total Articles</div>
@@ -35,186 +35,144 @@
             <select id="year-select" style="font-family: var(--font-mono); padding: 0.4rem 0.8rem; border: 2px solid var(--border-primary); background: var(--bg-primary); color: var(--text-primary);">
             </select>
         </div>
-        <div class="chart-wrapper">
-            <canvas id="articles-per-month"></canvas>
-        </div>
+        <div id="chart-monthly"></div>
     </div>
 
     <!-- Top Tags Chart -->
     <div style="margin: 3rem 0;">
         <h2>Top 10 Tags</h2>
-        <div class="chart-wrapper">
-            <canvas id="top-tags"></canvas>
-        </div>
+        <div id="chart-tags"></div>
     </div>
 
     <!-- Articles per Category Chart -->
     <div style="margin: 3rem 0;">
         <h2>Articles per Category</h2>
-        <div class="chart-wrapper">
-            <canvas id="articles-per-category"></canvas>
-        </div>
+        <div id="chart-category"></div>
     </div>
-
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const inkBlack = '#2C2C2C';
-    const borderDashed = '#B0A99F';
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+(function() {
+    const cs     = getComputedStyle(document.documentElement);
+    const INK    = cs.getPropertyValue('--text-primary').trim()  || '#2C2C2C';
+    const BORDER = cs.getPropertyValue('--border-dashed').trim() || '#B0A99F';
+    const MONO   = "'IBM Plex Mono', monospace";
 
-    // Build articles data grouped by year-month
+    const wrap = document.querySelector('.article-content');
+    const W    = () => Math.min(wrap ? wrap.clientWidth - 32 : 700, 860);
+
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function barAxes(labels) {
+        return [
+            {
+                values: (u, vs) => vs.map(v => labels[v] !== undefined ? labels[v] : ''),
+                font: `12px ${MONO}`, stroke: INK,
+                grid: { show: false },
+                ticks: { stroke: BORDER, width: 1 }
+            },
+            {
+                font: `12px ${MONO}`, stroke: INK,
+                grid: { stroke: BORDER, dash: [4, 4], width: 1 },
+                ticks: { show: false }
+            }
+        ];
+    }
+
+    function barSeries(label) {
+        return [
+            {},
+            {
+                label,
+                stroke: INK, fill: INK,
+                paths: uPlot.paths.bars({ size: [0.6, 48] }),
+                points: { show: false }
+            }
+        ];
+    }
+
+    // ── Articles per Month ────────────────────────────────────────
     const allArticles = [
         {{ range where .Site.RegularPages "Section" "reports" }}
         { year: '{{ .Date.Format "2006" }}', month: {{ .Date.Format "1" }} },
         {{ end }}
     ];
 
-    // Get unique years sorted descending
     const years = [...new Set(allArticles.map(a => a.year))].sort((a, b) => b - a);
-
-    // Populate year dropdown
-    const yearSelect = document.getElementById('year-select');
-    years.forEach(year => {
-        const opt = document.createElement('option');
-        opt.value = year;
-        opt.textContent = year;
-        yearSelect.appendChild(opt);
+    const sel   = document.getElementById('year-select');
+    years.forEach(y => {
+        const o = document.createElement('option');
+        o.value = y; o.textContent = y; sel.appendChild(o);
     });
 
-    // Build monthly chart for selected year
-    const monthlyChart = new Chart(document.getElementById('articles-per-month'), {
-        type: 'bar',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Articles',
-                data: Array(12).fill(0),
-                backgroundColor: inkBlack,
-                borderColor: inkBlack,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { borderDash: [5, 5], color: borderDashed },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
-                }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-
-    function updateMonthlyChart(year) {
+    let monthlyChart = null;
+    function buildMonthlyData(year) {
         const counts = Array(12).fill(0);
-        allArticles
-            .filter(a => a.year === year)
-            .forEach(a => { counts[parseInt(a.month) - 1]++; });
-        monthlyChart.data.datasets[0].data = counts;
-        monthlyChart.update();
+        allArticles.filter(a => a.year === year).forEach(a => { counts[parseInt(a.month) - 1]++; });
+        return [Array.from({ length: 12 }, (_, i) => i), counts];
     }
 
-    // Default to latest year
-    if (years.length > 0) updateMonthlyChart(years[0]);
+    function makeMonthlyChart(year) {
+        if (monthlyChart) { monthlyChart.destroy(); }
+        const vals = buildMonthlyData(year)[1];
+        const yMax = Math.max(...vals, 1) + 1;
+        monthlyChart = new uPlot({
+            width: W(), height: 260,
+            scales: { x: { time: false }, y: { range: [0, yMax] } },
+            axes: barAxes(months),
+            series: barSeries('Articles'),
+            legend: { show: false },
+            cursor: { show: true }
+        }, buildMonthlyData(year), document.getElementById('chart-monthly'));
+    }
 
-    yearSelect.addEventListener('change', function() {
-        updateMonthlyChart(this.value);
-    });
+    if (years.length > 0) makeMonthlyChart(years[0]);
+    sel.addEventListener('change', function() { makeMonthlyChart(this.value); });
 
-    // Top Tags Data
+    // ── Top Tags ──────────────────────────────────────────────────
     const tagCounts = {
         {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
         '{{ $name }}': {{ len $taxonomy }},
         {{ end }}
     };
+    const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const tagLabels  = sortedTags.map(t => t[0]);
+    const tagVals    = sortedTags.map(t => t[1]);
+    const tagXs      = Array.from({ length: tagLabels.length }, (_, i) => i);
 
-    const sortedTags = Object.entries(tagCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
+    new uPlot({
+        width: W(), height: 300,
+        scales: { x: { time: false }, y: { range: [0, Math.max(...tagVals, 1) + 1] } },
+        axes: barAxes(tagLabels),
+        series: barSeries('Count'),
+        legend: { show: false },
+        cursor: { show: true }
+    }, [tagXs, tagVals], document.getElementById('chart-tags'));
 
-    new Chart(document.getElementById('top-tags'), {
-        type: 'bar',
-        data: {
-            labels: sortedTags.map(t => t[0]),
-            datasets: [{
-                label: 'Count',
-                data: sortedTags.map(t => t[1]),
-                backgroundColor: inkBlack,
-                borderColor: inkBlack,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            layout: {
-                padding: { left: 10 }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grid: { borderDash: [5, 5], color: borderDashed },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        font: { family: 'IBM Plex Mono' },
-                        color: inkBlack,
-                        crossAlign: 'far'
-                    },
-                    afterFit: function(axis) {
-                        axis.width = 160;
-                    }
-                }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-
-    // Articles per Category Data
-    const categoryCounts = {
+    // ── Articles per Category ─────────────────────────────────────
+    const catCounts = {
         {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
         '{{ $name }}': {{ len $taxonomy }},
         {{ end }}
     };
+    const catLabels = Object.keys(catCounts);
+    const catVals   = Object.values(catCounts);
+    const catXs     = Array.from({ length: catLabels.length }, (_, i) => i);
 
-    new Chart(document.getElementById('articles-per-category'), {
-        type: 'bar',
-        data: {
-            labels: Object.keys(categoryCounts),
-            datasets: [{
-                label: 'Articles',
-                data: Object.values(categoryCounts),
-                backgroundColor: inkBlack,
-                borderColor: inkBlack,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { borderDash: [5, 5], color: borderDashed },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
-                }
-            },
-            plugins: { legend: { display: false } }
-        }
+    new uPlot({
+        width: W(), height: 260,
+        scales: { x: { time: false }, y: { range: [0, Math.max(...catVals, 1) + 1] } },
+        axes: barAxes(catLabels),
+        series: barSeries('Articles'),
+        legend: { show: false },
+        cursor: { show: true }
+    }, [catXs, catVals], document.getElementById('chart-category'));
+
+    // ── responsive resize ─────────────────────────────────────────
+    window.addEventListener('resize', () => {
+        const w = W();
+        if (monthlyChart) monthlyChart.setSize({ width: w, height: 260 });
     });
-});
+})();
 </script>
 {{ end }}

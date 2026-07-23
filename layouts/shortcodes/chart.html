@@ -1,42 +1,84 @@
 <div class="chart-wrapper">
     {{ if .Get "title" }}<div class="chart-title">{{ .Get "title" }}</div>{{ end }}
     {{ $chartID := .Get "id" | default (printf "chart-%d" (now.UnixNano)) }}
-    <canvas id="{{ $chartID }}"></canvas>
+    {{ $chartType := .Get "type" | default "line" }}
+    <div id="{{ $chartID }}"></div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const ctx = document.getElementById('{{ $chartID }}').getContext('2d');
-    
-    // Vintage Colors from SKILL
-    const inkBlack = '#2C2C2C';
-    const sepia = '#8B5A2B';
-    const brickRed = '#A52A2A';
-    const navy = '#1A365D';
-    
-    const data = {{ .Inner | safeJS }};
-    
-    new Chart(ctx, {
-        type: '{{ .Get "type" | default "line" }}',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    grid: { borderDash: [5, 5], color: '#B0A99F' },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
-                }
-            }
+(function() {
+    const cs     = getComputedStyle(document.documentElement);
+    const INK    = cs.getPropertyValue('--text-primary').trim()  || '#2C2C2C';
+    const BORDER = cs.getPropertyValue('--border-dashed').trim() || '#B0A99F';
+    const BG     = cs.getPropertyValue('--bg-primary').trim()    || '#FAF7F2';
+    const MONO   = "'IBM Plex Mono', monospace";
+
+    const raw    = {{ .Inner | safeJS }};
+    const data   = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    const type   = '{{ $chartType }}';
+    const labels = data.labels || [];
+    const ds     = data.datasets && data.datasets[0] ? data.datasets[0] : {};
+    const values = ds.data || [];
+
+    const el   = document.getElementById('{{ $chartID }}');
+    const wrap = el.closest('.article-content') || document.body;
+    const W    = () => Math.min(wrap.clientWidth - 32, 860);
+
+    // x indices
+    const xs = Array.from({ length: labels.length }, (_, i) => i);
+
+    const axes = [
+        {
+            values: (u, vs) => vs.map(v => labels[v] !== undefined ? labels[v] : ''),
+            font: `12px ${MONO}`, stroke: INK,
+            grid: { show: false },
+            ticks: { stroke: BORDER, width: 1 }
+        },
+        {
+            font: `12px ${MONO}`, stroke: INK,
+            grid: { stroke: BORDER, dash: [4, 4], width: 1 },
+            ticks: { show: false }
         }
-    });
-});
+    ];
+
+    let series;
+    if (type === 'bar') {
+        series = [
+            {},
+            {
+                label: ds.label || 'Value',
+                stroke: INK, fill: INK,
+                paths: uPlot.paths.bars({ size: [0.6, 48] }),
+                points: { show: false }
+            }
+        ];
+    } else {
+        // line — with points, vintage style
+        series = [
+            {},
+            {
+                label: ds.label || 'Value',
+                stroke: INK, width: 2,
+                fill: ds.fill ? INK + '18' : undefined,
+                points: { show: true, size: 7, fill: BG, stroke: INK, width: 2 }
+            }
+        ];
+    }
+
+    const maxVal = Math.max(...values);
+    const yMax   = maxVal <= 0 ? 10 : maxVal * 1.2;
+
+    new uPlot({
+        width:  W(),
+        height: 260,
+        scales: {
+            x: { time: false },
+            y: { range: [0, yMax] }
+        },
+        axes,
+        series,
+        legend: { show: ds.label ? true : false },
+        cursor: { show: true }
+    }, [xs, values], el);
+})();
 </script>

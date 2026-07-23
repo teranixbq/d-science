@@ -1,9 +1,14 @@
 {{ define "main" }}
 {{ $showSidebar := or .Site.Params.ads.enable_sidebar .Site.Params.sidebar.enable_trending }}
+{{ $isMenuPage := false }}
+{{ range .Site.Menus.main }}
+    {{ if eq $.RelPermalink .URL }}{{ $isMenuPage = true }}{{ end }}
+{{ end }}
+{{ $hasSidebar := and $showSidebar (not $isMenuPage) (ne .Section "") }}
 
-{{ if and (eq .Section "reports") $showSidebar }}<div class="editorial-grid single-editorial-grid single-editorial-grid-sidebar">{{ else }}<div class="single-container-narrow">{{ end }}
+{{ if $hasSidebar }}<div class="editorial-grid single-editorial-grid single-editorial-grid-sidebar">{{ else }}<div class="single-container-narrow">{{ end }}
     <!-- Main Article Column -->
-    <article class='article-content single-article-content {{ if and (eq .Section "reports") $showSidebar }}single-content-reports{{ end }}'>
+    <article class='article-content single-article-content {{ if $hasSidebar }}single-content-reports{{ end }}'>
         <header class="single-header">
             {{ if eq .Section "reports" }}
             <div class="single-date-note">
@@ -53,7 +58,7 @@
 
     </article>
 
-    {{ if and (eq .Section "reports") $showSidebar }}
+    {{ if $hasSidebar }}
     <!-- Right Sidebar Column -->
     <aside class="sidebar-column">
         {{ partial "right-sidebar.html" . }}
@@ -61,7 +66,7 @@
     {{ end }}
 </div>
 
-{{ if eq .Section "reports" }}
+{{ if in (slice "reports" "information-retrieval") .Section }}
 <!-- Related Articles Section (Full Width, Outside Grid) -->
 <div class="related-articles-container">
     <h2 class="section-title related-articles-title">{{ i18n "related_articles" }}</h2>

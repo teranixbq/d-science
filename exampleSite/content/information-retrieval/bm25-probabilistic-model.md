@@ -11,7 +11,7 @@ BM25 (Best Match 25) is a ranking function used by search engines to estimate th
 
 ## 1. The BM25 Formula
 
-$$\text{BM25}(q, d) = \sum_{t \in q} \text{IDF}(t) \cdot \frac{f(t,d) \cdot (k_1 + 1)}{f(t,d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{\text{avgdl}})}$$
+The BM25 score for a query `q` against document `d` is computed by summing over each query term `t`: the IDF of `t` multiplied by a normalized term frequency. The term frequency component saturates with higher counts (controlled by `k1`) and is penalized for long documents relative to the corpus average (controlled by `b`).
 
 Where:
 - `f(t, d)` = term frequency of `t` in document `d`

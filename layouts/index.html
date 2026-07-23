@@ -6,8 +6,8 @@
         <h1 class="sidebar-section-title index-section-title">{{ i18n "latest_articles" }}</h1>
         
         <div class="articles-grid">
-            {{ $reports := where .Site.RegularPages "Section" "reports" }}
-            {{ $paginator := .Paginate $reports }}
+            {{ $all := where .Site.RegularPages "Type" "not in" (slice "page") | complement (where .Site.RegularPages "Section" "") }}
+            {{ $paginator := .Paginate ($all.ByDate.Reverse) }}
             {{ range $paginator.Pages }}
             <div class="article-card index-article-card">
                 <div class="meta index-article-meta">
