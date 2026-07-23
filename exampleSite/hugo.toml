@@ -4,7 +4,7 @@ themesDir = '../..'
 locale = 'en-us'
 title = 'D-Science Theme | Teranix Notes'
 [pagination]
-    pagerSize = 10
+    pagerSize = 9
 
 [params]
     enableComments = true
@@ -57,17 +57,17 @@ title = 'D-Science Theme | Teranix Notes'
 
 [menu]
   [[menu.main]]
-    identifier = "reports"
-    name = "Reports"
-    url = "/reports/"
+    identifier = "archive"
+    name = "Archive"
+    url = "/archive/"
     weight = 10
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 20
   [[menu.main]]
     identifier = "explore"
     name = "Explore"
     url = "/explore/"
     weight = 15
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 20

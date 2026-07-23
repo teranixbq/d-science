@@ -1,0 +1,119 @@
+<div id="graph-container" style="width: 100%; height: 600px; border: 1px dashed var(--border-dashed); margin: 2rem 0; background: var(--bg-primary);"></div>
+
+{{ $vis := resources.Get "js/vis-network.min.js" }}
+<script src="{{ $vis.RelPermalink }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Generate data from Hugo
+    const nodes = [];
+    const edges = [];
+    const addedTags = new Set();
+    const articleNodes = [];
+
+    // Colors matching the vintage theme
+    const colorArticle = {
+        background: '#EDE8DF', // var(--bg-secondary)
+        border: '#2C2C2C',     // var(--text-primary)
+        hover: { background: '#C4BEB4', border: '#2C2C2C' },
+        highlight: { background: '#B0A99F', border: '#2C2C2C' }
+    };
+    
+    const colorTag = {
+        background: '#2C2C2C', // var(--text-primary)
+        border: '#2C2C2C',     
+        hover: { background: '#3D3D3D', border: '#3D3D3D' },
+        highlight: { background: '#000000', border: '#000000' }
+    };
+
+    const fontArticle = { color: '#2C2C2C', face: 'IBM Plex Mono', size: 14 };
+    const fontTag = { color: '#F5F0E8', face: 'IBM Plex Mono', size: 12 };
+
+    {{ range $index, $page := where .Site.RegularPages "Section" "reports" }}
+        {{ $articleId := print "article_" $index }}
+        nodes.push({
+            id: '{{ $articleId }}',
+            label: '{{ .Title | truncate 30 }}',
+            title: '{{ .Title }}',
+            url: '{{ .RelPermalink }}',
+            shape: 'box',
+            color: colorArticle,
+            font: fontArticle,
+            borderWidth: 2,
+            shadow: true
+        });
+
+        {{ range .Params.tags }}
+            {{ $tagId := print "tag_" (. | urlize) }}
+            if (!addedTags.has('{{ $tagId }}')) {
+                nodes.push({
+                    id: '{{ $tagId }}',
+                    label: '#{{ . }}',
+                    title: 'View all {{ . }} articles',
+                    url: '{{ $.Site.BaseURL }}tags/{{ . | urlize }}/',
+                    shape: 'ellipse',
+                    color: colorTag,
+                    font: fontTag,
+                    shadow: true
+                });
+                addedTags.add('{{ $tagId }}');
+            }
+            
+            edges.push({
+                from: '{{ $articleId }}',
+                to: '{{ $tagId }}',
+                color: { color: '#B0A99F', highlight: '#2C2C2C' },
+                width: 1,
+                selectionWidth: 2,
+                dashes: true
+            });
+        {{ end }}
+    {{ end }}
+
+    const container = document.getElementById('graph-container');
+    const data = { nodes: nodes, edges: edges };
+    const options = {
+        physics: {
+            forceAtlas2Based: {
+                gravitationalConstant: -50,
+                centralGravity: 0.01,
+                springLength: 100,
+                springConstant: 0.08
+            },
+            maxVelocity: 50,
+            solver: 'forceAtlas2Based',
+            timestep: 0.35,
+            stabilization: { iterations: 150 }
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 200,
+            zoomView: true
+        },
+        nodes: {
+            margin: 10,
+            shapeProperties: { borderRadius: 0 } // Square corners for vintage look
+        }
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    // Make nodes clickable
+    network.on("click", function(params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            const node = nodes.find(n => n.id === nodeId);
+            if (node && node.url) {
+                window.location.href = node.url;
+            }
+        }
+    });
+
+    // Change cursor on hover
+    network.on("hoverNode", function() {
+        container.style.cursor = 'pointer';
+    });
+    network.on("blurNode", function() {
+        container.style.cursor = 'default';
+    });
+});
+</script>

@@ -1,0 +1,226 @@
+{{ define "main" }}
+<div class="article-content">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Content }}</p>
+    
+    <!-- Stats Overview -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
+        {{ $totalArticles := len (where .Site.RegularPages "Section" "reports") }}
+        {{ $allTags := slice }}
+        {{ range where .Site.RegularPages "Section" "reports" }}
+            {{ $allTags = $allTags | append .Params.tags }}
+        {{ end }}
+        {{ $uniqueTags := $allTags | uniq }}
+        {{ $totalCategories := len .Site.Taxonomies.categories }}
+        
+        <div style="border: 2px dashed var(--border-dashed); padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">{{ $totalArticles }}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Total Articles</div>
+        </div>
+        <div style="border: 2px dashed var(--border-dashed); padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">{{ len $uniqueTags }}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Unique Tags</div>
+        </div>
+        <div style="border: 2px dashed var(--border-dashed); padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">{{ $totalCategories }}</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Categories</div>
+        </div>
+    </div>
+
+    <!-- Articles per Month Chart -->
+    <div style="margin: 3rem 0;">
+        <h2>Articles Published per Month</h2>
+        <div style="margin-bottom: 1rem;">
+            <label for="year-select" style="font-family: var(--font-mono); font-weight: 700; margin-right: 1rem;">Year:</label>
+            <select id="year-select" style="font-family: var(--font-mono); padding: 0.4rem 0.8rem; border: 2px solid var(--border-primary); background: var(--bg-primary); color: var(--text-primary);">
+            </select>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="articles-per-month"></canvas>
+        </div>
+    </div>
+
+    <!-- Top Tags Chart -->
+    <div style="margin: 3rem 0;">
+        <h2>Top 10 Tags</h2>
+        <div class="chart-wrapper">
+            <canvas id="top-tags"></canvas>
+        </div>
+    </div>
+
+    <!-- Articles per Category Chart -->
+    <div style="margin: 3rem 0;">
+        <h2>Articles per Category</h2>
+        <div class="chart-wrapper">
+            <canvas id="articles-per-category"></canvas>
+        </div>
+    </div>
+
+    <!-- Knowledge Graph Section -->
+    <div style="margin: 4rem 0;">
+        <h2>Knowledge Graph</h2>
+        <p>An interactive visual exploration of the reports, mapped by their taxonomic relationships and underlying tags. Click on a dark node to explore a specific classification (tag), or click on a light node to read the respective article.</p>
+        {{ partial "tag-graph.html" . }}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const inkBlack = '#2C2C2C';
+    const borderDashed = '#B0A99F';
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // Build articles data grouped by year-month
+    const allArticles = [
+        {{ range where .Site.RegularPages "Section" "reports" }}
+        { year: '{{ .Date.Format "2006" }}', month: {{ .Date.Format "1" }} },
+        {{ end }}
+    ];
+
+    // Get unique years sorted descending
+    const years = [...new Set(allArticles.map(a => a.year))].sort((a, b) => b - a);
+
+    // Populate year dropdown
+    const yearSelect = document.getElementById('year-select');
+    years.forEach(year => {
+        const opt = document.createElement('option');
+        opt.value = year;
+        opt.textContent = year;
+        yearSelect.appendChild(opt);
+    });
+
+    // Build monthly chart for selected year
+    const monthlyChart = new Chart(document.getElementById('articles-per-month'), {
+        type: 'bar',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Articles',
+                data: Array(12).fill(0),
+                backgroundColor: inkBlack,
+                borderColor: inkBlack,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { borderDash: [5, 5], color: borderDashed },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    function updateMonthlyChart(year) {
+        const counts = Array(12).fill(0);
+        allArticles
+            .filter(a => a.year === year)
+            .forEach(a => { counts[parseInt(a.month) - 1]++; });
+        monthlyChart.data.datasets[0].data = counts;
+        monthlyChart.update();
+    }
+
+    // Default to latest year
+    if (years.length > 0) updateMonthlyChart(years[0]);
+
+    yearSelect.addEventListener('change', function() {
+        updateMonthlyChart(this.value);
+    });
+
+    // Top Tags Data
+    const tagCounts = {
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        '{{ $name }}': {{ len $taxonomy }},
+        {{ end }}
+    };
+
+    const sortedTags = Object.entries(tagCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10);
+
+    new Chart(document.getElementById('top-tags'), {
+        type: 'bar',
+        data: {
+            labels: sortedTags.map(t => t[0]),
+            datasets: [{
+                label: 'Count',
+                data: sortedTags.map(t => t[1]),
+                backgroundColor: inkBlack,
+                borderColor: inkBlack,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            layout: {
+                padding: { left: 10 }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grid: { borderDash: [5, 5], color: borderDashed },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
+                },
+                y: {
+                    grid: { display: false },
+                    ticks: {
+                        font: { family: 'IBM Plex Mono' },
+                        color: inkBlack,
+                        crossAlign: 'far'
+                    },
+                    afterFit: function(axis) {
+                        axis.width = 160;
+                    }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // Articles per Category Data
+    const categoryCounts = {
+        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        '{{ $name }}': {{ len $taxonomy }},
+        {{ end }}
+    };
+
+    new Chart(document.getElementById('articles-per-category'), {
+        type: 'bar',
+        data: {
+            labels: Object.keys(categoryCounts),
+            datasets: [{
+                label: 'Articles',
+                data: Object.values(categoryCounts),
+                backgroundColor: inkBlack,
+                borderColor: inkBlack,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { borderDash: [5, 5], color: borderDashed },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack, stepSize: 1 }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'IBM Plex Mono' }, color: inkBlack }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+});
+</script>
+{{ end }}
