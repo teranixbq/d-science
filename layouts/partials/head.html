@@ -12,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Chart.js for Vintage Data Viz -->
+    <!-- Chart.js: defer to avoid render-blocking -->
     {{ $chart := resources.Get "js/chart.min.js" }}
-    <script src="{{ $chart.RelPermalink }}"></script>
+    <script src="{{ $chart.RelPermalink }}" defer></script>
     
     {{ $style := resources.Get "css/main.css" | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
