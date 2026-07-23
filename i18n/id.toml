@@ -81,3 +81,15 @@ other = "Tahun"
 
 [no_related_articles]
 other = "Tidak ada artikel terkait."
+
+[copy_code]
+other = "SALIN"
+
+[copy_code_success]
+other = "TERSALIN"
+
+[advertisement]
+other = "Iklan"
+
+[zoomed_image]
+other = "Gambar Diperbesar"

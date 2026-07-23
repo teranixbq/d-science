@@ -47,10 +47,10 @@
 
     <!-- uPlot: load on pages that use the chart shortcode, or on the explore page -->
     {{ if or (.HasShortcode "chart") (eq .Layout "explore") }}
-    {{ $uplotcss := resources.Get "css/uplot.min.css" }}
-    {{ $uplot := resources.Get "js/uplot.min.js" }}
-    <link rel="stylesheet" href="{{ $uplotcss.RelPermalink }}">
-    <script src="{{ $uplot.RelPermalink }}"></script>
+    {{ $uplotcss := resources.Get "css/uplot.min.css" | fingerprint }}
+    {{ $uplot := resources.Get "js/uplot.min.js" | fingerprint }}
+    <link rel="stylesheet" href="{{ $uplotcss.RelPermalink }}" integrity="{{ $uplotcss.Data.Integrity }}">
+    <script src="{{ $uplot.RelPermalink }}" integrity="{{ $uplot.Data.Integrity }}" defer></script>
     {{ end }}
 
     {{ $style := resources.Get "css/main.css" | fingerprint }}

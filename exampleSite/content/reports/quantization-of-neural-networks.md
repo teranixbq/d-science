@@ -4,7 +4,6 @@ date: 2026-05-13
 author: "Node"
 categories: ["TECHNOLOGY", "RESEARCH"]
 tags: ["edge-computing", "optimization", "neural-networks"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Reducing the bit-depth of weights to enable local inference on limited hardware."
 ---
 

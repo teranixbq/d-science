@@ -1,10 +1,9 @@
 ---
 title: "The Rise of Transformer Architectures"
 date: 2026-05-01
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["TECHNOLOGY", "RESEARCH"]
 tags: ["ai", "transformers", "neural-networks"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "An inquiry into the shift from recurrent mechanisms to attention-based paradigms in computational linguistics."
 ---
 

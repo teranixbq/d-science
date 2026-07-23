@@ -1,10 +1,9 @@
 ---
 title: "Stochastic Calculus in High-Frequency Trading"
 date: 2026-05-04
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["MARKET ANALYSIS", "RESEARCH"]
 tags: ["trading", "mathematics", "stochastic"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "A rigorous application of Ito's Lemma to the fluctuations observed in sub-millisecond equity exchanges."
 ---
 

@@ -5,16 +5,21 @@
 
 <script>
 function copyCode(btn) {
-    const pre  = btn.closest('.code-block-wrapper').querySelector('pre');
-    const text = pre.innerText;
-    navigator.clipboard.writeText(text).then(function() {
-        btn.textContent = 'COPIED';
+    const pre    = btn.closest('.code-block-wrapper').querySelector('pre');
+    const text   = pre.innerText;
+    const label  = btn.dataset.copy   || 'COPY';
+    const copied = btn.dataset.copied || 'COPIED';
+
+    function showCopied() {
+        btn.textContent = copied;
         btn.classList.add('copied');
         setTimeout(function() {
-            btn.textContent = 'COPY';
+            btn.textContent = label;
             btn.classList.remove('copied');
         }, 2000);
-    }).catch(function() {
+    }
+
+    navigator.clipboard.writeText(text).then(showCopied).catch(function() {
         // fallback for older browsers
         const ta = document.createElement('textarea');
         ta.value = text;
@@ -24,12 +29,7 @@ function copyCode(btn) {
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        btn.textContent = 'COPIED';
-        btn.classList.add('copied');
-        setTimeout(function() {
-            btn.textContent = 'COPY';
-            btn.classList.remove('copied');
-        }, 2000);
+        showCopied();
     });
 }
 </script>

@@ -1,10 +1,9 @@
 ---
 title: "Bayesian Inference in Volatile Asset Pricing"
 date: 2026-05-16
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["MARKET ANALYSIS", "DATA SCIENCE"]
 tags: ["bayesian", "finance", "volatility"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Updating our beliefs in the face of rapid market reversals using the Bayesian framework."
 ---
 

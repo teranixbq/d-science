@@ -46,7 +46,6 @@ title = 'D-Science Theme | Teranix Notes'
 [taxonomies]
     tag = "tags"
     category = "categories"
-    series = "series"
 
 [markup]
     [markup.goldmark]
@@ -54,7 +53,6 @@ title = 'D-Science Theme | Teranix Notes'
             unsafe = true # Allow HTML in Markdown if needed
     [markup.highlight]
         noClasses = false
-        style = "monokai" # We can override this in CSS to match vintage style
 
 [menu]
   [[menu.main]]

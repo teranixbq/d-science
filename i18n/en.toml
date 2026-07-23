@@ -81,3 +81,15 @@ other = "Year"
 
 [no_related_articles]
 other = "No related articles found."
+
+[copy_code]
+other = "COPY"
+
+[copy_code_success]
+other = "COPIED"
+
+[advertisement]
+other = "Advertisement"
+
+[zoomed_image]
+other = "Zoomed Image"

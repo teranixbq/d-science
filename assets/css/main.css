@@ -2,7 +2,6 @@
   /* Colors - StockTaper / Data Science Report */
   --bg-primary: #F5F0E8;
   --bg-secondary: #EDE8DF;
-  --bg-code: #1E1E1E;
   --text-primary: #2C2C2C;
   --text-body: #3D3D3D;
   --text-muted: #595959;
@@ -163,7 +162,7 @@ a:hover {
   padding-bottom: 0.5rem;
 }
 
-canvas {
+.chart-wrapper canvas {
   max-width: 100%;
 }
 

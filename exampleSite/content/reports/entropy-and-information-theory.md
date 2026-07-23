@@ -1,10 +1,9 @@
 ---
 title: "Entropy and Information Theory in Modern Markets"
 date: 2026-05-10
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["RESEARCH", "MARKET ANALYSIS"]
 tags: ["information-theory", "entropy", "markets"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "A Claude Shannon-inspired look at the signal-to-noise ratio in high-frequency data streams."
 ---
 

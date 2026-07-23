@@ -1,10 +1,9 @@
 ---
 title: "Quantum Supremacy and its Implications for Cryptography"
 date: 2026-05-25
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["RESEARCH", "TECHNOLOGY"]
 tags: ["quantum-computing", "cryptography", "security"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Assessing the threat posed by Shor's algorithm to standard RSA encryption standards."
 ---
 

@@ -1,10 +1,9 @@
 ---
 title: "Graph Theory Applications in Social Sentiment Analysis"
 date: 2026-05-19
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["DATA SCIENCE", "RESEARCH"]
 tags: ["graph-theory", "sentiment-analysis", "networks"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Mapping the propagation of financial rumors through decentralized communication nodes."
 ---
 

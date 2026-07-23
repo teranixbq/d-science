@@ -1,10 +1,9 @@
 ---
 title: "Large Language Models as Predictive Oracles"
 date: 2026-05-07
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["AI", "TECHNOLOGY"]
 tags: ["llm", "prediction", "data-science"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Exploring the utility of generative pre-trained models in forecasting macroeconomic trends."
 ---
 

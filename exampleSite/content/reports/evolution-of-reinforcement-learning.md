@@ -1,10 +1,9 @@
 ---
 title: "The Evolution of Reinforcement Learning in Robotics"
 date: 2026-05-22
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["TECHNOLOGY", "AI"]
 tags: ["reinforcement-learning", "robotics", "automation"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "From simple Markov chains to complex multi-agent simulations in physical space."
 ---
 

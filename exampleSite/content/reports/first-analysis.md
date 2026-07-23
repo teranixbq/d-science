@@ -1,7 +1,7 @@
 ---
 title: "Observations on Market Volatility in the Digital Era"
 date: 2026-05-28
-author: "Left Notess Labs"
+author: "Teranix"
 abstract: "This report examines the correlation between social sentiment and ticker volatility using systematic teletype observations. Our findings suggest a high degree of stochastic resonance in mid-cap equity markets."
 tags: ["market-analysis", "volatility", "stochastic"]
 ---

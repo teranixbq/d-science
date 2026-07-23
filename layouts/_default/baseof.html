@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Locale }}">
+<html lang="{{ .Site.Language.Lang | default "en" }}">
 {{ partial "head.html" . }}
 <body>
     <div class="container">
@@ -14,8 +14,8 @@
     </div>
 
     <!-- Lightbox Element -->
-    <div id="lightbox">
-        <img id="lightbox-img" src="" alt="Zoomed Image">
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="{{ i18n "zoomed_image" | default "Zoomed Image" }}">
+        <img id="lightbox-img" src="" alt="">
         <div id="lightbox-caption"></div>
     </div>
 
@@ -26,16 +26,29 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const images = document.querySelectorAll('.article-image img');
 
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+            lightbox.removeAttribute('aria-hidden');
+        }
+
         images.forEach(img => {
             img.addEventListener('click', function() {
                 lightboxImg.src = this.src;
+                lightboxImg.alt = this.getAttribute('alt') || '';
                 lightboxCaption.textContent = this.getAttribute('alt') || this.getAttribute('title') || '';
                 lightbox.classList.add('active');
             });
         });
 
-        lightbox.addEventListener('click', function() {
-            lightbox.classList.remove('active');
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     });
     </script>

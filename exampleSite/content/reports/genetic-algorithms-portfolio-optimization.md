@@ -1,10 +1,9 @@
 ---
 title: "Genetic Algorithms for Portfolio Optimization"
 date: 2026-05-28
-author: "Left Notess Labs"
+author: "Teranix"
 categories: ["MARKET ANALYSIS", "DATA SCIENCE"]
 tags: ["genetic-algorithms", "portfolio", "optimization"]
-image: "https://www.stocktaper.com/api/placeholder/400/300"
 abstract: "Using Darwinian principles to select the fittest asset combinations for long-term growth."
 ---
 

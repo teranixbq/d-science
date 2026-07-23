@@ -33,7 +33,7 @@
         {{ if .Site.Params.ads.enable_in_article }}
         <!-- In-Article Ad -->
         <div class="ad-container">
-            <span class="ad-label">Advertisement</span>
+            <span class="ad-label">{{ i18n "advertisement" }}</span>
             {{ .Site.Params.ads.article_code | safeHTML }}
         </div>
         {{ end }}
@@ -46,7 +46,7 @@
         <div class="single-tags-container">
             <span class="single-tags-label">{{ i18n "classifications" }}:</span>
             {{ range .Params.tags }}
-            <a href="/tags/{{ . | urlize }}" class="single-tag">#{{ . }}</a>
+            <a href="{{ "tags" | relURL }}/{{ . | urlize }}/" class="single-tag">#{{ . }}</a>
             {{ end }}
         </div>
         {{ end }}
