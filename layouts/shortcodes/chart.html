@@ -6,6 +6,7 @@
 </div>
 
 <script>
+window.addEventListener('DOMContentLoaded', function() {
 (function() {
     const cs     = getComputedStyle(document.documentElement);
     const INK    = cs.getPropertyValue('--text-primary').trim()  || '#2C2C2C';
@@ -81,4 +82,5 @@
         cursor: { show: true }
     }, [xs, values], el);
 })();
+});
 </script>
