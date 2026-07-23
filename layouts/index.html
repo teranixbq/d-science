@@ -6,7 +6,8 @@
         <h1 class="sidebar-section-title index-section-title">{{ i18n "latest_articles" }}</h1>
         
         <div class="articles-grid">
-            {{ $paginator := .Paginator }}
+            {{ $all := where .Site.RegularPages "Type" "not in" (slice "page") | complement (where .Site.RegularPages "Section" "") }}
+            {{ $paginator := .Paginate ($all.ByDate.Reverse) }}
             {{ range $paginator.Pages }}
             <div class="article-card index-article-card">
                 <div class="meta index-article-meta">
@@ -29,17 +30,7 @@
         </div>
 
         <div class="index-pagination-container">
-            {{ if gt $paginator.TotalPages 1 }}
-            <nav class="pagination" aria-label="{{ i18n "pagination" | default "Pagination" }}">
-                {{ if $paginator.HasPrev }}
-                <a href="{{ $paginator.Prev.URL }}" class="pagination-link">← {{ i18n "previous_page" }}</a>
-                {{ end }}
-                <span class="pagination-text">{{ i18n "page" }} {{ $paginator.PageNumber }} {{ i18n "of" }} {{ $paginator.TotalPages }}</span>
-                {{ if $paginator.HasNext }}
-                <a href="{{ $paginator.Next.URL }}" class="pagination-link">{{ i18n "next_page" }} →</a>
-                {{ end }}
-            </nav>
-            {{ end }}
+            {{ partial "pagination.html" . }}
         </div>
     </div>
 
