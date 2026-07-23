@@ -11,9 +11,6 @@ min_version = "0.110.0"
   name = "Teranix"
   homepage = "https://github.com/teranixbq"
 
-# If porting an existing theme
-  homepage = "https://github.com/username/repository"
-
 [menu]
   [[menu.main]]
     identifier = "reports"

@@ -5,13 +5,17 @@
     <!-- Main Article Column -->
     <article class='article-content single-article-content {{ if and (eq .Section "reports") $showSidebar }}single-content-reports{{ end }}'>
         <header class="single-header">
+            {{ if eq .Section "reports" }}
             <div class="single-date-note">
-                Left Note // {{ .Date.Format "2006.01.02" }}
+                Published: {{ .Date.Format "02/01/2006" }}
             </div>
+            {{ end }}
             <h1 class="single-title">{{ .Title }}</h1>
+            {{ if eq .Section "reports" }}
             <div class="single-author">
                 Author: {{ with .Params.author }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}
             </div>
+            {{ end }}
         </header>
 
         {{ if .Params.abstract }}

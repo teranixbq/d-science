@@ -18,8 +18,8 @@
             <div class="sidebar-title">Hugging Face</div>
             <div class="sidebar-item-container">
                 
-                {{ if .Site.Data.huggingface }}
-                    {{ range $index, $item := .Site.Data.huggingface }}
+                {{ if hugo.Data.huggingface }}
+                    {{ range $index, $item := hugo.Data.huggingface }}
                     {{ if lt $index 5 }}
                     <div class="sidebar-item">
                         <div class="sidebar-item-title sidebar-item-title-hf">{{ .id }}</div>
@@ -45,8 +45,8 @@
             <div class="sidebar-title">Kaggle {{ i18n "trending_datasets" }}</div>
             <div class="sidebar-item-container">
                 
-                {{ if .Site.Data.kaggle }}
-                    {{ range $index, $item := .Site.Data.kaggle }}
+                {{ if hugo.Data.kaggle }}
+                    {{ range $index, $item := hugo.Data.kaggle }}
                     {{ if lt $index 5 }}
                     <div class="sidebar-item">
                         <div class="sidebar-item-title">{{ .title }}</div>
