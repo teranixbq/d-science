@@ -43,7 +43,7 @@
         '{{ $section }}': [
             {{ range where $.Site.RegularPages "Section" $section }}
             {
-                title: {{ .Title | plainify | jsonify }},
+                title: '{{ .Title | plainify | replaceRE `'` `\'` }}',
                 url: '{{ .RelPermalink }}',
                 date: '{{ .Date.Format "02/01/2006" }}'
             },
