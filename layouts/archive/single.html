@@ -5,7 +5,7 @@
     
     <!-- Section Filter Dropdown -->
     <div class="archive-filter" style="margin: 2rem 0;">
-        <label for="section-select" style="font-family: var(--font-mono); font-weight: 700; margin-right: 1rem;">Filter by Section:</label>
+        <label for="section-select" style="font-family: var(--font-mono); font-weight: 700; margin-right: 1rem;">{{ i18n "filter_by_section" }}:</label>
         <select id="section-select" style="font-family: var(--font-mono); padding: 0.5rem 1rem; border: 2px solid var(--border-primary); background: var(--bg-primary); color: var(--text-primary);">
             {{ $sections := slice }}
             {{ range .Site.RegularPages }}

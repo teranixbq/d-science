@@ -10,9 +10,6 @@ other = "Artikel Terkait"
 [analysis]
 other = "Analisis"
 
-[back_to_reports]
-other = "Kembali ke semua laporan"
-
 [archive]
 other = "Arsip"
 
@@ -51,3 +48,36 @@ other = "Artikel Sebelumnya"
 
 [next_note]
 other = "Artikel Selanjutnya"
+
+[published]
+other = "Diterbitkan"
+
+[author]
+other = "Penulis"
+
+[filter_by_section]
+other = "Filter berdasarkan Seksi"
+
+[total_articles]
+other = "Total Artikel"
+
+[unique_tags]
+other = "Tag Unik"
+
+[categories]
+other = "Kategori"
+
+[articles_per_month]
+other = "Artikel Diterbitkan per Bulan"
+
+[top_tags]
+other = "10 Tag Teratas"
+
+[articles_per_category]
+other = "Artikel per Kategori"
+
+[year]
+other = "Tahun"
+
+[no_related_articles]
+other = "Tidak ada artikel terkait."

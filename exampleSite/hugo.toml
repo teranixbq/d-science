@@ -2,6 +2,7 @@ baseURL = 'https://example.com/'
 theme = 'd-science'
 themesDir = '../..'
 locale = 'en-us'
+enableRobotsTXT = false
 title = 'D-Science Theme | Teranix Notes'
 [pagination]
     pagerSize = 9

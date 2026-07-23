@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+{{ range .Site.Menus.main }}
+Disallow: {{ .URL }}
+{{ end }}
+Disallow: /tags/
+
+Sitemap: {{ .Site.BaseURL }}sitemap.xml

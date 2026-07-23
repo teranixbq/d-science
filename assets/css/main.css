@@ -131,78 +131,6 @@ a:hover {
   text-transform: none;
 }
 
-.widget-subtitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.data-row {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px dashed var(--border-dashed);
-  font-size: 0.85rem;
-}
-
-.data-row:last-child {
-  border-bottom: none;
-}
-
-.data-row .icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.75rem;
-  background: #eee; /* Placeholder for logo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  font-weight: 700;
-}
-
-.data-row .label-group {
-  flex-grow: 1;
-}
-
-.data-row .ticker {
-  font-weight: 700;
-  display: block;
-}
-
-.data-row .name {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.data-row .value {
-  font-weight: 700;
-  text-align: right;
-}
-
-/* Related Articles Section */
-.related-articles {
-  margin-top: 5rem;
-  padding-top: 3rem;
-  border-top: 2px solid var(--border-dark);
-  text-align: center;
-}
-
-.related-articles .section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-}
-
-.back-link {
-  display: inline-block;
-  margin-top: 4rem;
-  font-size: 0.85rem;
-  text-decoration: none;
-  font-weight: 700;
-}
-
 /* Drop Cap - Large first letter for articles */
 .content > p:first-of-type::first-letter {
   float: left;
@@ -267,13 +195,6 @@ nav a {
 .article-content {
   max-width: 720px;
   margin: 0 auto;
-}
-
-/* Breakout wide elements */
-.breakout-wide {
-  width: 100%;
-  max-width: 1024px;
-  margin: 2rem auto;
 }
 
 /* Data Tables - Ledger Style */
@@ -612,20 +533,6 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-top: 0.5rem;
-}
-
-.back-link-container {
-  margin-top: 3rem;
-}
-
-.back-link {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-dark);
-  padding-bottom: 0.2rem;
 }
 
 .list-container {

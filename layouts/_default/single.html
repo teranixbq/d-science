@@ -12,13 +12,13 @@
         <header class="single-header">
             {{ if eq .Section "reports" }}
             <div class="single-date-note">
-                Published: {{ .Date.Format "02/01/2006" }}
+                {{ i18n "published" }}: {{ .Date.Format "02/01/2006" }}
             </div>
             {{ end }}
             <h1 class="single-title">{{ .Title }}</h1>
             {{ if eq .Section "reports" }}
             <div class="single-author">
-                Author: {{ with .Params.author }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}
+                {{ i18n "author" }}: {{ with .Params.author }}{{ . }}{{ else }}{{ $.Site.Params.author }}{{ end }}
             </div>
             {{ end }}
         </header>

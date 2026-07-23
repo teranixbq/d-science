@@ -29,7 +29,7 @@
   {{ range $related }}
   <div class="article-card-single">
     <div class="article-card-meta">
-      {{ with .Params.categories }}{{ index . 0 }}{{ else }}Analysis{{ end }}
+      {{ with .Params.categories }}{{ index . 0 }}{{ else }}{{ i18n "analysis" }}{{ end }}
     </div>
     <h3 class="grid-title">
       <a href="{{ .RelPermalink }}" class="article-card-title-link">{{ .Title }}</a>
@@ -43,6 +43,4 @@
   </div>
   {{ end }}
 </div>
-{{ else }}
-<p class="article-card-meta">No related articles found.</p>
 {{ end }}

@@ -10,9 +10,6 @@ other = "Related Articles"
 [analysis]
 other = "Analysis"
 
-[back_to_reports]
-other = "Back to all reports"
-
 [archive]
 other = "Archive"
 
@@ -51,3 +48,36 @@ other = "Previous Article"
 
 [next_note]
 other = "Next Article"
+
+[published]
+other = "Published"
+
+[author]
+other = "Author"
+
+[filter_by_section]
+other = "Filter by Section"
+
+[total_articles]
+other = "Total Articles"
+
+[unique_tags]
+other = "Unique Tags"
+
+[categories]
+other = "Categories"
+
+[articles_per_month]
+other = "Articles Published per Month"
+
+[top_tags]
+other = "Top 10 Tags"
+
+[articles_per_category]
+other = "Articles per Category"
+
+[year]
+other = "Year"
+
+[no_related_articles]
+other = "No related articles found."
