@@ -1,8 +1,8 @@
 baseURL = 'https://example.com/'
 theme = 'd-science'
 themesDir = '../..'
-locale = 'en-us'
-enableRobotsTXT = false
+defaultContentLanguage = 'en'
+enableRobotsTXT = true
 title = 'D-Science Theme | Teranix Notes'
 [pagination]
     pagerSize = 9
@@ -30,9 +30,9 @@ title = 'D-Science Theme | Teranix Notes'
     [params.giscus]
         enable = false
         repo = "username/repository"
-        repoId = "R_kgDOSsfz5Q"
+        repoId = "YOUR_REPO_ID"
         category = "General"
-        categoryId = "DIC_kwDOSsfz5c4C-K-X"
+        categoryId = "YOUR_CATEGORY_ID"
         mapping = "url"
         strict = "0"
         reactionsEnabled = "1"

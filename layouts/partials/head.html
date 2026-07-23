@@ -24,6 +24,7 @@
     <meta property="og:description" content="{{ $description }}">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:locale" content="{{ .Site.Language.Lang | default "en" | replaceRE "-" "_" }}">
     {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
     {{ if .IsPage }}
     <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -36,6 +37,7 @@
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
     <meta name="twitter:description" content="{{ $description }}">
     {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+    {{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
     <!-- IBM Plex Mono Font: async load to avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +65,7 @@
     {{ end }}
 
     <!-- uPlot: load on pages that use the chart shortcode, or on the explore page -->
-    {{ if or (.HasShortcode "chart") (eq .Layout "explore") }}
+    {{ if or (.HasShortcode "chart") (eq .Type "explore") }}
     {{ $uplotcss := resources.Get "css/uplot.min.css" | fingerprint }}
     {{ $uplot := resources.Get "js/uplot.min.js" | fingerprint }}
     <link rel="stylesheet" href="{{ $uplotcss.RelPermalink }}" integrity="{{ $uplotcss.Data.Integrity }}">

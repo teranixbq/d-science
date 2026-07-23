@@ -1,6 +1,6 @@
 <div class="chart-wrapper">
     {{ if .Get "title" }}<div class="chart-title">{{ .Get "title" }}</div>{{ end }}
-    {{ $chartID := .Get "id" | default (printf "chart-%d" (now.UnixNano)) }}
+    {{ $chartID := .Get "id" | default (printf "chart-%s" (.Inner | sha1)) }}
     {{ $chartType := .Get "type" | default "line" }}
     <div id="{{ $chartID }}"></div>
 </div>
@@ -82,9 +82,10 @@ window.addEventListener('DOMContentLoaded', function() {
         cursor: { show: true }
     }, [xs, values], el);
 
-    window.addEventListener('resize', () => {
+    const ro = new ResizeObserver(() => {
         chart.setSize({ width: W(), height: 260 });
     });
+    ro.observe(wrap);
 })();
 });
 </script>

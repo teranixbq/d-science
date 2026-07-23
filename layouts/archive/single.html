@@ -21,7 +21,7 @@
     </div>
 
     <!-- Articles Container -->
-    <div id="articles-container" class="list-container">
+    <div id="articles-container" class="list-container" data-no-articles="{{ i18n "no_articles_in_section" | default "No articles found in this section." }}">
         <!-- Articles will be inserted here by JavaScript -->
     </div>
 </div>
@@ -40,12 +40,12 @@
         {{ end }}
         {{ range sort ($sections | uniq) }}
         {{ $section := . }}
-        '{{ $section }}': [
+        {{ $section | jsonify }}: [
             {{ range where $.Site.RegularPages "Section" $section }}
             {
-                title: '{{ .Title | plainify | replaceRE `'` `\'` }}',
-                url: '{{ .RelPermalink }}',
-                date: '{{ .Date.Format "02/01/2006" }}'
+                title: {{ .Title | plainify | jsonify }},
+                url: {{ .RelPermalink | jsonify }},
+                date: {{ .Date.Format "02/01/2006" | jsonify }}
             },
             {{ end }}
         ],
@@ -65,7 +65,8 @@
             const articles = articlesBySection[section] || [];
             
             if (articles.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted);">No articles found in this section.</p>';
+                const msg = container.getAttribute('data-no-articles') || 'No articles found in this section.';
+                container.innerHTML = '<p style="color: var(--text-muted);">' + msg + '</p>';
                 return;
             }
 

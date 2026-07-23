@@ -14,41 +14,56 @@
     </div>
 
     <!-- Lightbox Element -->
-    <div id="lightbox" role="dialog" aria-modal="true" aria-label="{{ i18n "zoomed_image" | default "Zoomed Image" }}">
+    <div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="{{ i18n "zoomed_image" | default "Zoomed Image" }}">
+        <button id="lightbox-close" aria-label="Close" style="position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:inherit;font-size:2rem;cursor:pointer;font-family:var(--font-mono);">&times;</button>
         <img id="lightbox-img" src="" alt="">
         <div id="lightbox-caption"></div>
     </div>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const lightbox = document.getElementById('lightbox');
+        const lightbox    = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
-        const images = document.querySelectorAll('.article-image img');
+        const closeBtn    = document.getElementById('lightbox-close');
+        const mainEl      = document.querySelector('main');
+        const images      = document.querySelectorAll('.article-image img');
+        let lastFocused   = null;
+
+        function openLightbox(img) {
+            lastFocused = img;
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.getAttribute('alt') || '';
+            lightboxCaption.textContent = img.getAttribute('alt') || img.getAttribute('title') || '';
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            if (mainEl) mainEl.setAttribute('aria-hidden', 'true');
+            closeBtn.focus();
+        }
 
         function closeLightbox() {
             lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            if (mainEl) mainEl.removeAttribute('aria-hidden');
             lightboxImg.src = '';
-            lightbox.removeAttribute('aria-hidden');
+            if (lastFocused) { lastFocused.focus(); lastFocused = null; }
         }
 
         images.forEach(img => {
-            img.addEventListener('click', function() {
-                lightboxImg.src = this.src;
-                lightboxImg.alt = this.getAttribute('alt') || '';
-                lightboxCaption.textContent = this.getAttribute('alt') || this.getAttribute('title') || '';
-                lightbox.classList.add('active');
+            img.addEventListener('click', function() { openLightbox(this); });
+            img.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(this); }
             });
         });
+
+        closeBtn.addEventListener('click', closeLightbox);
 
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) closeLightbox();
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
         });
     });
     </script>

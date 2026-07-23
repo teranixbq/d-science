@@ -5,9 +5,10 @@
 
     <!-- Stats Overview -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
-        {{ $totalArticles := len .Site.RegularPages }}
+        {{ $allPages := where .Site.RegularPages "Section" "ne" "" }}
+        {{ $totalArticles := len $allPages }}
         {{ $allTags := slice }}
-        {{ range .Site.RegularPages }}
+        {{ range $allPages }}
             {{ $allTags = $allTags | append .Params.tags }}
         {{ end }}
         {{ $uniqueTags := $allTags | uniq }}
@@ -220,13 +221,15 @@ window.addEventListener('DOMContentLoaded', function() {
     }, [catXs, catVals], document.getElementById('chart-category'));
     attachTooltip(catChart, catLabels, catVals);
 
-    // ── responsive resize (all 3 charts) ──────────────────────────
-    window.addEventListener('resize', () => {
+    // ── responsive resize (all 3 charts) via ResizeObserver ───────
+    const exploreWrap = document.querySelector('.article-content') || document.body;
+    const roExplore = new ResizeObserver(() => {
         const w = W();
         if (monthlyChart) monthlyChart.setSize({ width: w, height: 260 });
         if (tagsChart)    tagsChart.setSize({ width: w, height: 340 });
         if (catChart)     catChart.setSize({ width: w, height: 320 });
     });
+    roExplore.observe(exploreWrap);
 })();
 });
 </script>

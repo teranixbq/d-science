@@ -93,3 +93,9 @@ other = "Iklan"
 
 [zoomed_image]
 other = "Gambar Diperbesar"
+
+[no_articles_in_section]
+other = "Tidak ada artikel ditemukan di seksi ini."
+
+[pagination]
+other = "Navigasi Halaman"

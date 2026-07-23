@@ -1,8 +1,9 @@
 {{ define "main" }}
 {{ $showSidebar := or .Site.Params.ads.enable_sidebar .Site.Params.sidebar.enable_trending }}
 {{ $isMenuPage := false }}
+{{ $currentURL := .Permalink }}
 {{ range .Site.Menus.main }}
-    {{ if eq $.RelPermalink .URL }}{{ $isMenuPage = true }}{{ end }}
+    {{ if eq $currentURL (.URL | absURL) }}{{ $isMenuPage = true }}{{ end }}
 {{ end }}
 {{ $hasSidebar := and $showSidebar (not $isMenuPage) (ne .Section "") }}
 

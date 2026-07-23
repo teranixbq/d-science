@@ -93,3 +93,9 @@ other = "Advertisement"
 
 [zoomed_image]
 other = "Zoomed Image"
+
+[no_articles_in_section]
+other = "No articles found in this section."
+
+[pagination]
+other = "Pagination"
