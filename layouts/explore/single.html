@@ -68,10 +68,11 @@ window.addEventListener('DOMContentLoaded', function() {
         return [
             {
                 values: (u, vs) => vs.map(v => labels[v] !== undefined ? labels[v] : ''),
-                font: `12px ${MONO}`, stroke: INK,
+                font: `11px ${MONO}`, stroke: INK,
                 grid: { show: false },
                 ticks: { stroke: BORDER, width: 1 },
                 rotate: -45,
+                gap: 8,
             },
             {
                 font: `12px ${MONO}`, stroke: INK,
@@ -143,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const tagXs      = Array.from({ length: tagLabels.length }, (_, i) => i);
 
     const tagsChart = new uPlot({
-        width: W(), height: 300,
+        width: W(), height: 360,
         scales: { x: { time: false }, y: { range: [0, Math.max(...tagVals, 1) + 1] } },
         axes: barAxes(tagLabels),
         series: barSeries('Count'),
@@ -162,7 +163,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const catXs     = Array.from({ length: catLabels.length }, (_, i) => i);
 
     const catChart = new uPlot({
-        width: W(), height: 260,
+        width: W(), height: 320,
         scales: { x: { time: false }, y: { range: [0, Math.max(...catVals, 1) + 1] } },
         axes: barAxes(catLabels),
         series: barSeries('Articles'),
@@ -174,8 +175,8 @@ window.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
         const w = W();
         if (monthlyChart) monthlyChart.setSize({ width: w, height: 260 });
-        if (tagsChart)    tagsChart.setSize({ width: w, height: 300 });
-        if (catChart)     catChart.setSize({ width: w, height: 260 });
+        if (tagsChart)    tagsChart.setSize({ width: w, height: 360 });
+        if (catChart)     catChart.setSize({ width: w, height: 320 });
     });
 })();
 });
