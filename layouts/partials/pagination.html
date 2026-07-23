@@ -1,13 +1,14 @@
-{{ if gt .Paginator.TotalPages 1 }}
-<nav class="pagination">
-    {{ if .Paginator.HasPrev }}
-    <a href="{{ .Paginator.Prev.URL }}" class="pagination-link">← {{ i18n "previous_page" }}</a>
+{{ $pager := .Paginator }}
+{{ if gt $pager.TotalPages 1 }}
+<nav class="pagination" aria-label="{{ i18n "pagination" | default "Pagination" }}">
+    {{ if $pager.HasPrev }}
+    <a href="{{ $pager.Prev.URL }}" class="pagination-link">← {{ i18n "previous_page" }}</a>
     {{ end }}
     
-    <span class="pagination-text">{{ i18n "page" }} {{ .Paginator.PageNumber }} {{ i18n "of" }} {{ .Paginator.TotalPages }}</span>
+    <span class="pagination-text">{{ i18n "page" }} {{ $pager.PageNumber }} {{ i18n "of" }} {{ $pager.TotalPages }}</span>
 
-    {{ if .Paginator.HasNext }}
-    <a href="{{ .Paginator.Next.URL }}" class="pagination-link">{{ i18n "next_page" }} →</a>
+    {{ if $pager.HasNext }}
+    <a href="{{ $pager.Next.URL }}" class="pagination-link">{{ i18n "next_page" }} →</a>
     {{ end }}
 </nav>
 {{ end }}
