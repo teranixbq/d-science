@@ -59,11 +59,11 @@ def fetch_latest_hf_data():
             with open('data/huggingface.json', 'w', encoding='utf-8') as f:
                 json.dump(processed_data, f, indent=2)
                 
-            print(f"Data Hugging Face berhasil diambil dan diproses.")
+            print(f"Successfully fetched and processed Hugging Face trending data.")
             return
             
     except Exception as e:
-        print(f"Gagal mengambil data Hugging Face: {e}")
+        print(f"Failed to fetch Hugging Face data: {e}")
 
 if __name__ == "__main__":
     fetch_latest_hf_data()

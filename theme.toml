@@ -3,6 +3,7 @@ license = "MIT"
 licenselink = "https://github.com/teranixbq/d-science/blob/main/LICENSE"
 description = "A vintage data science report theme for Hugo."
 homepage = "https://github.com/teranixbq/d-science"
+demosite = ""
 tags = ["blog", "vintage", "data science", "report", "clean", "minimalist"]
 features = ["blog", "vintage", "charts", "giscus"]
 min_version = "0.110.0"
@@ -10,20 +11,3 @@ min_version = "0.110.0"
 [author]
   name = "Teranix"
   homepage = "https://github.com/teranixbq"
-
-[menu]
-  [[menu.main]]
-    identifier = "reports"
-    name = "Reports"
-    url = "/reports/"
-    weight = 10
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 20
-  [[menu.main]]
-    identifier = "explore"
-    name = "Explore"
-    url = "/explore/"
-    weight = 15

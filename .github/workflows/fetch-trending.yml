@@ -6,29 +6,29 @@ on:
       - main
       - master
   schedule:
-    - cron: '0 5 * * *'
-  workflow_dispatch: 
+    - cron: '0 5 */5 * *'
+  workflow_dispatch:
 
 jobs:
   fetch-and-update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write 
-      
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          
+
       - name: Run fetch scripts
         run: |
-          python scripts/fetch_kaggle.py
-          python scripts/fetch_hf.py
-        
+          python exampleSite/scripts/fetch_kaggle.py
+          python exampleSite/scripts/fetch_hf.py
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"

@@ -46,12 +46,12 @@ def fetch_latest_kaggle_data():
                 with open('data/kaggle.json', 'w', encoding='utf-8') as f:
                     json.dump(data, f, indent=2)
                     
-                print(f"Data berhasil diambil dan diproses untuk tanggal {date_str}")
+                print(f"Successfully fetched and processed Kaggle data for {date_str}")
                 return
         except Exception as e:
             continue
             
-    print("Gagal mengambil data Kaggle dari 14 hari terakhir.")
+    print("Failed to fetch Kaggle data from the last 14 days.")
 
 if __name__ == "__main__":
     fetch_latest_kaggle_data()
