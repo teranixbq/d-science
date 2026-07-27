@@ -85,7 +85,9 @@ hugo mod get github.com/teranixbq/d-science
 
 ## Quick Start
 
-Copy the example configuration from `exampleSite/hugo.toml` into your site's `hugo.toml`. The example site at `exampleSite/` contains working articles and configuration you can reference.
+For a complete `hugo.toml` configuration reference, see [`exampleSite/hugo.toml`](exampleSite/hugo.toml). It contains all available options with comments — copy it into your site and adjust as needed.
+
+The `exampleSite/` directory also contains working articles and content structure you can use as a reference.
 
 ---
 
