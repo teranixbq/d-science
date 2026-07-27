@@ -3,7 +3,7 @@ theme = 'd-science'
 themesDir = '../..'
 defaultContentLanguage = 'en'
 enableRobotsTXT = true
-title = 'D-Science Theme | Teranix Notes'
+title = 'D-Science'
 [pagination]
     pagerSize = 9
 
