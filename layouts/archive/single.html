@@ -24,6 +24,11 @@
     <div id="articles-container" class="list-container" data-no-articles="{{ i18n "no_articles_in_section" | default "No articles found in this section." }}">
         <!-- Articles will be inserted here by JavaScript -->
     </div>
+
+    <!-- Empty state: shown when no articles exist at all (fresh install) -->
+    <div id="archive-empty" style="display:none; padding: 2rem 0; font-family: var(--font-mono); color: var(--text-muted);">
+        {{ i18n "no_articles_published" | default "No articles published yet." }}
+    </div>
 </div>
 
 {{/* Build data as Hugo dict, inject as JSON */}}
@@ -98,6 +103,13 @@
 
         if (select.options.length > 0) {
             renderArticles(select.options[0].value);
+        } else {
+            // No articles at all — show empty state, hide filter and container
+            const emptyEl = document.getElementById('archive-empty');
+            const filterEl = document.querySelector('.archive-filter');
+            if (emptyEl) emptyEl.style.display = 'block';
+            if (filterEl) filterEl.style.display = 'none';
+            if (container) container.style.display = 'none';
         }
 
         select.addEventListener('change', function() {

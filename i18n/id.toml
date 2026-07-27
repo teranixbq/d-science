@@ -99,3 +99,6 @@ other = "Tidak ada artikel ditemukan di seksi ini."
 
 [pagination]
 other = "Navigasi Halaman"
+
+[no_articles_published]
+other = "Belum ada artikel yang diterbitkan."

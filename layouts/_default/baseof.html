@@ -20,6 +20,12 @@
         <div id="lightbox-caption"></div>
     </div>
 
+    <!-- uPlot JS: load before inline chart scripts to avoid race condition -->
+    {{ if or (.HasShortcode "chart") (eq .Type "explore") }}
+    {{ $uplot := resources.Get "js/uplot.min.js" | fingerprint }}
+    <script src="{{ $uplot.RelPermalink }}" integrity="{{ $uplot.Data.Integrity }}"></script>
+    {{ end }}
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const lightbox    = document.getElementById('lightbox');

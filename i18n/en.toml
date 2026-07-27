@@ -99,3 +99,6 @@ other = "No articles found in this section."
 
 [pagination]
 other = "Pagination"
+
+[no_articles_published]
+other = "No articles published yet."

@@ -64,14 +64,28 @@
     </style>
     {{ end }}
 
-    <!-- uPlot: load on pages that use the chart shortcode, or on the explore page -->
+    <!-- uPlot CSS: load on pages that use the chart shortcode, or on the explore page -->
     {{ if or (.HasShortcode "chart") (eq .Type "explore") }}
     {{ $uplotcss := resources.Get "css/uplot.min.css" | fingerprint }}
-    {{ $uplot := resources.Get "js/uplot.min.js" | fingerprint }}
     <link rel="stylesheet" href="{{ $uplotcss.RelPermalink }}" integrity="{{ $uplotcss.Data.Integrity }}">
-    <script src="{{ $uplot.RelPermalink }}" integrity="{{ $uplot.Data.Integrity }}" defer></script>
     {{ end }}
 
     {{ $style := resources.Get "css/main.css" | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+
+    {{/* Google Search Console verification */}}
+    {{ with .Site.Params.google.search_console_verification }}
+    <meta name="google-site-verification" content="{{ . }}">
+    {{ end }}
+
+    {{/* Google Analytics 4 */}}
+    {{ with .Site.Params.google.analytics_id }}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+    </script>
+    {{ end }}
 </head>

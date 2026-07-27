@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // ── Articles per Month ────────────────────────────────────────
     const allArticles = [
-        {{ range .Site.RegularPages }}
+        {{ range where .Site.RegularPages "Section" "ne" "" }}
         { year: '{{ .Date.Format "2006" }}', month: {{ .Date.Format "1" }} },
         {{ end }}
     ];

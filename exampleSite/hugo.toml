@@ -42,6 +42,17 @@ title = 'D-Science Theme | Teranix Notes'
         lang = "en"
         loading = "lazy"
 
+    [params.google]
+        # Google Search Console verification code
+        # Get from: Search Console > Settings > Ownership verification > HTML tag
+        # Example: search_console_verification = "abc123xyz"
+        search_console_verification = ""
+
+        # Google Analytics 4 Measurement ID
+        # Get from: GA4 > Admin > Data Streams > Web > Measurement ID
+        # Example: analytics_id = "G-XXXXXXXXXX"
+        analytics_id = ""
+
 [taxonomies]
     tag = "tags"
     category = "categories"
