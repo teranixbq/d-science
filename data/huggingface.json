@@ -1,32 +1,32 @@
 [
   {
-    "id": "openbmb/MiniCPM5-1B",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "28.8k"
-  },
-  {
-    "id": "nvidia/LocateAnything-3B",
+    "id": "moonshotai/Kimi-K3",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "18.3k"
-  },
-  {
-    "id": "meituan-longcat/LongCat-Video-Avatar-1.5",
-    "pipeline_tag": "",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "0"
-  },
-  {
-    "id": "HauhauCS/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 42 days ago",
-    "download_text": "2.2M"
-  },
-  {
-    "id": "bytedance-research/Lance",
-    "pipeline_tag": "Any To Any",
-    "updated_text": "Updated 1 days ago",
+    "updated_text": "Updated today",
     "download_text": "2.9k"
+  },
+  {
+    "id": "baidu/Unlimited-OCR",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 4 days ago",
+    "download_text": "2.6M"
+  },
+  {
+    "id": "poolside/Laguna-S-2.1",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated today",
+    "download_text": "63.6k"
+  },
+  {
+    "id": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated today",
+    "download_text": "634.1k"
+  },
+  {
+    "id": "upstage/Solar-Open2-250B",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated today",
+    "download_text": "3.8k"
   }
 ]
