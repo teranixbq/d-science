@@ -33,12 +33,21 @@ A vintage ledger-style theme for Hugo, built for data scientists, analysts, and 
 
 ### Option A — Git Submodule (recommended for most users)
 
+If you don't have a Hugo site yet, create one first:
+
 ```bash
-# From your Hugo site root
+hugo new site mysite
+cd mysite
+git init
+```
+
+Then add the theme as a submodule:
+
+```bash
 git submodule add https://github.com/teranixbq/d-science.git themes/d-science
 ```
 
-Then set the theme in your `hugo.toml`:
+Set the theme in your `hugo.toml`:
 
 ```toml
 theme = "d-science"
