@@ -2,31 +2,31 @@
   {
     "id": "moonshotai/Kimi-K3",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated today",
-    "download_text": "2.9k"
-  },
-  {
-    "id": "baidu/Unlimited-OCR",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "2.6M"
-  },
-  {
-    "id": "poolside/Laguna-S-2.1",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated today",
-    "download_text": "63.6k"
+    "updated_text": "Updated 3 days ago",
+    "download_text": "387.8k"
   },
   {
     "id": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
     "pipeline_tag": "Image Text To Text",
     "updated_text": "Updated today",
-    "download_text": "634.1k"
+    "download_text": "955.8k"
   },
   {
-    "id": "upstage/Solar-Open2-250B",
-    "pipeline_tag": "Text Generation",
+    "id": "baidu/Unlimited-OCR",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 2 days ago",
+    "download_text": "2.6M"
+  },
+  {
+    "id": "owensong/Inflect-Micro-v2",
+    "pipeline_tag": "Text To Speech",
     "updated_text": "Updated today",
-    "download_text": "3.8k"
+    "download_text": "1.1k"
+  },
+  {
+    "id": "poolside/Laguna-S-2.1",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "73.2k"
   }
 ]
