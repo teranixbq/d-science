@@ -1,32 +1,32 @@
 [
   {
-    "id": "moonshotai/Kimi-K3",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "493.5k"
+    "id": "MiniMaxAI/MiniMax-H3",
+    "pipeline_tag": "Image Text To Video",
+    "updated_text": "Updated today",
+    "download_text": "10.8k"
   },
   {
     "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
     "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 5 days ago",
+    "download_text": "433.3k"
+  },
+  {
+    "id": "moonshotai/Kimi-K3",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 9 days ago",
+    "download_text": "1.1M"
+  },
+  {
+    "id": "Comfy-Org/MiniMax-H3",
+    "pipeline_tag": "",
     "updated_text": "Updated today",
-    "download_text": "0"
+    "download_text": "2"
   },
   {
     "id": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated today",
-    "download_text": "1.1M"
-  },
-  {
-    "id": "baidu/Unlimited-OCR",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "2.5M"
-  },
-  {
-    "id": "owensong/Inflect-Micro-v2",
-    "pipeline_tag": "Text To Speech",
     "updated_text": "Updated 1 days ago",
-    "download_text": "1.4k"
+    "download_text": "1.6M"
   }
 ]
