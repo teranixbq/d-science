@@ -3,30 +3,30 @@
     "id": "MiniMaxAI/MiniMax-H3",
     "pipeline_tag": "Image Text To Video",
     "updated_text": "Updated today",
-    "download_text": "10.8k"
+    "download_text": "47.5k"
+  },
+  {
+    "id": "meta-models/Muse-Glimmer-30B",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated today",
+    "download_text": "0"
   },
   {
     "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
     "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 5 days ago",
-    "download_text": "433.3k"
-  },
-  {
-    "id": "moonshotai/Kimi-K3",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 9 days ago",
-    "download_text": "1.1M"
+    "updated_text": "Updated 10 days ago",
+    "download_text": "954.4k"
   },
   {
     "id": "Comfy-Org/MiniMax-H3",
     "pipeline_tag": "",
-    "updated_text": "Updated today",
-    "download_text": "2"
+    "updated_text": "Updated 1 days ago",
+    "download_text": "6.0M"
   },
   {
-    "id": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 1 days ago",
-    "download_text": "1.6M"
+    "id": "larryvrh/MiniMax-H3-Turbo-Lora",
+    "pipeline_tag": "Text To Video",
+    "updated_text": "Updated 2 days ago",
+    "download_text": "0"
   }
 ]
