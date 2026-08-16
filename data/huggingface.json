@@ -1,32 +1,32 @@
 [
   {
-    "id": "MiniMaxAI/MiniMax-H3",
-    "pipeline_tag": "Image Text To Video",
-    "updated_text": "Updated today",
-    "download_text": "47.5k"
+    "id": "Qwen/Qwen3.8-27B",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "91.9k"
   },
   {
     "id": "meta-models/Muse-Glimmer-30B",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated today",
-    "download_text": "0"
+    "updated_text": "Updated 4 days ago",
+    "download_text": "246.5k"
   },
   {
-    "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 10 days ago",
-    "download_text": "954.4k"
-  },
-  {
-    "id": "Comfy-Org/MiniMax-H3",
+    "id": "unsloth/Qwen3.8-27B-GGUF",
     "pipeline_tag": "",
-    "updated_text": "Updated 1 days ago",
-    "download_text": "6.0M"
+    "updated_text": "Updated today",
+    "download_text": "868.0k"
   },
   {
-    "id": "larryvrh/MiniMax-H3-Turbo-Lora",
-    "pipeline_tag": "Text To Video",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "0"
+    "id": "Qwen/Qwen3.8-2.4T-A95B",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "6.4k"
+  },
+  {
+    "id": "Lightricks/LTX-2.5",
+    "pipeline_tag": "Image To Video",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "378.4k"
   }
 ]
