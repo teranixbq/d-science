@@ -2,31 +2,31 @@
   {
     "id": "Qwen/Qwen3.8-27B",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 1 days ago",
-    "download_text": "91.9k"
-  },
-  {
-    "id": "meta-models/Muse-Glimmer-30B",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "246.5k"
+    "updated_text": "Updated 6 days ago",
+    "download_text": "1.4M"
   },
   {
     "id": "unsloth/Qwen3.8-27B-GGUF",
     "pipeline_tag": "",
     "updated_text": "Updated today",
-    "download_text": "868.0k"
+    "download_text": "5.1M"
   },
   {
-    "id": "Qwen/Qwen3.8-2.4T-A95B",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "6.4k"
+    "id": "MiniMaxAI/MiniMax-Music3",
+    "pipeline_tag": "Text To Audio",
+    "updated_text": "Updated 6 days ago",
+    "download_text": "14.5k"
   },
   {
-    "id": "Lightricks/LTX-2.5",
-    "pipeline_tag": "Image To Video",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "378.4k"
+    "id": "orcarouter/Qwen3.8-27B-Uncensored-MLX",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated today",
+    "download_text": "2.6k"
+  },
+  {
+    "id": "Qwen/Qwen3.8-27B-FP8",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 6 days ago",
+    "download_text": "1.5M"
   }
 ]
