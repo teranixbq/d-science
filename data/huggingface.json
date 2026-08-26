@@ -2,31 +2,31 @@
   {
     "id": "Qwen/Qwen3.8-27B",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 6 days ago",
-    "download_text": "1.4M"
+    "updated_text": "Updated 11 days ago",
+    "download_text": "2.9M"
   },
   {
     "id": "unsloth/Qwen3.8-27B-GGUF",
     "pipeline_tag": "",
-    "updated_text": "Updated today",
-    "download_text": "5.1M"
+    "updated_text": "Updated 5 days ago",
+    "download_text": "7.3M"
   },
   {
-    "id": "MiniMaxAI/MiniMax-Music3",
-    "pipeline_tag": "Text To Audio",
-    "updated_text": "Updated 6 days ago",
-    "download_text": "14.5k"
+    "id": "OBLITERATUS/Qwen3.8-27B-OBLITERATED",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "389.7k"
   },
   {
     "id": "orcarouter/Qwen3.8-27B-Uncensored-MLX",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated today",
-    "download_text": "2.6k"
+    "updated_text": "Updated 1 days ago",
+    "download_text": "68.9k"
   },
   {
-    "id": "Qwen/Qwen3.8-27B-FP8",
+    "id": "orcarouter/Qwen3.8-27B-Uncensored-FP8",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 6 days ago",
-    "download_text": "1.5M"
+    "updated_text": "Updated 5 days ago",
+    "download_text": "249.7k"
   }
 ]
