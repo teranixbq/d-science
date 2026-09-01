@@ -2,31 +2,31 @@
   {
     "id": "Qwen/Qwen3.8-Flash-Next",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "158.6k"
+    "updated_text": "Updated 5 days ago",
+    "download_text": "207.9k"
   },
   {
     "id": "zai-org/GLM-5.3-Flash",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "379.3k"
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated today",
+    "download_text": "441.3k"
   },
   {
     "id": "zai-org/GLM-5.3",
     "pipeline_tag": "Text Generation",
     "updated_text": "Updated today",
-    "download_text": "66.2k"
+    "download_text": "94.4k"
   },
   {
     "id": "Qwen/Qwen3.8-27B",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 16 days ago",
-    "download_text": "4.7M"
+    "updated_text": "Updated 17 days ago",
+    "download_text": "5.0M"
   },
   {
     "id": "unsloth/Qwen3.8-Flash-Next-GGUF",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "373.0k"
+    "updated_text": "Updated today",
+    "download_text": "431.3k"
   }
 ]
