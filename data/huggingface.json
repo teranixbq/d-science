@@ -1,32 +1,32 @@
 [
   {
-    "id": "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+    "id": "deepseek-ai/DeepSeek-V4.1-Flash",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "209.2k"
+    "updated_text": "Updated 1 days ago",
+    "download_text": "6"
   },
   {
-    "id": "Qwen/Qwen3.8-27B",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 22 days ago",
-    "download_text": "6.2M"
+    "id": "openbmb/MiniCPM5-2B",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated today",
+    "download_text": "42.3k"
   },
   {
     "id": "XHToken/Spark-X2.5-4B",
     "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "5.5k"
+    "updated_text": "Updated 8 days ago",
+    "download_text": "15.9k"
   },
   {
-    "id": "Qwen/Qwen3.8-Flash-Next",
+    "id": "Qwen/Qwen3.8-27B",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 10 days ago",
-    "download_text": "433.0k"
+    "updated_text": "Updated 27 days ago",
+    "download_text": "7.3M"
   },
   {
-    "id": "google/timesfm-3.0-pytorch",
-    "pipeline_tag": "Time Series Forecasting",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "144.5k"
+    "id": "ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 9 days ago",
+    "download_text": "614.9k"
   }
 ]
