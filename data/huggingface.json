@@ -1,32 +1,32 @@
 [
   {
+    "id": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "2.2M"
+  },
+  {
+    "id": "convaiinnovations/laya",
+    "pipeline_tag": "Text Classification",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "0"
+  },
+  {
+    "id": "Qwen/Qwen-Image-2.1",
+    "pipeline_tag": "Text To Image",
+    "updated_text": "Updated today",
+    "download_text": "6.5k"
+  },
+  {
+    "id": "XingChen-AGI/Xing4.0-29B-A4B",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "18.4k"
+  },
+  {
     "id": "deepseek-ai/DeepSeek-V4.1-Flash",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 6 days ago",
-    "download_text": "325.7k"
-  },
-  {
-    "id": "Edge0/Edge0-35B-A3B-preview",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "17.9k"
-  },
-  {
-    "id": "openbmb/MiniCPM5-2B",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "271.8k"
-  },
-  {
-    "id": "Qwen/Qwen3.8-27B",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 32 days ago",
-    "download_text": "7.7M"
-  },
-  {
-    "id": "m-a-p/YuE2-3B",
-    "pipeline_tag": "Text To Audio",
-    "updated_text": "Updated today",
-    "download_text": "6.7k"
+    "updated_text": "Updated 11 days ago",
+    "download_text": "512.1k"
   }
 ]
