@@ -2,31 +2,31 @@
   {
     "id": "google/embeddinggemma-2",
     "pipeline_tag": "Feature Extraction",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "98.8k"
+    "updated_text": "Updated 9 days ago",
+    "download_text": "144.3k"
   },
   {
     "id": "jialinyyzz/humanizer",
     "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "37.6k"
-  },
-  {
-    "id": "Cloudflare/clef",
-    "pipeline_tag": "Image Text To Text",
     "updated_text": "Updated 1 days ago",
-    "download_text": "14.4k"
+    "download_text": "75.3k"
   },
   {
-    "id": "abenzerps/Qwen-Image-2.1-Uncensored-GGUF",
+    "id": "Qwen/Qwen-Image-2.1-Turbo",
     "pipeline_tag": "Text To Image",
-    "updated_text": "Updated 13 days ago",
-    "download_text": "2.2M"
+    "updated_text": "Updated 3 days ago",
+    "download_text": "15.3k"
   },
   {
-    "id": "Aleph-Alpha/Kolibri-1",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 8 days ago",
-    "download_text": "12.6k"
+    "id": "openbmb/MiniCPM-V-4.7-35B-A3B",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated today",
+    "download_text": "9.3k"
+  },
+  {
+    "id": "fishaudio/drama-3",
+    "pipeline_tag": "Text To Speech",
+    "updated_text": "Updated 2 days ago",
+    "download_text": "4.0k"
   }
 ]
