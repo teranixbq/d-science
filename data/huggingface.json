@@ -1,32 +1,32 @@
 [
   {
-    "id": "google/embeddinggemma-2",
-    "pipeline_tag": "Feature Extraction",
-    "updated_text": "Updated 9 days ago",
-    "download_text": "144.3k"
-  },
-  {
-    "id": "jialinyyzz/humanizer",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 1 days ago",
-    "download_text": "75.3k"
-  },
-  {
-    "id": "Qwen/Qwen-Image-2.1-Turbo",
-    "pipeline_tag": "Text To Image",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "15.3k"
-  },
-  {
-    "id": "openbmb/MiniCPM-V-4.7-35B-A3B",
+    "id": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated today",
-    "download_text": "9.3k"
+    "updated_text": "Updated 4 days ago",
+    "download_text": "27.7k"
+  },
+  {
+    "id": "black-forest-labs/flux-3-image-klein-comfy",
+    "pipeline_tag": "Image To Image",
+    "updated_text": "Updated 4 days ago",
+    "download_text": "439.5k"
   },
   {
     "id": "fishaudio/drama-3",
     "pipeline_tag": "Text To Speech",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "4.0k"
+    "updated_text": "Updated 4 days ago",
+    "download_text": "13.5k"
+  },
+  {
+    "id": "meta-models/Muse-Spark-Open-816B-A42B",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 5 days ago",
+    "download_text": "2.9k"
+  },
+  {
+    "id": "black-forest-labs/flux-3-image-klein",
+    "pipeline_tag": "Image To Image",
+    "updated_text": "Updated 5 days ago",
+    "download_text": "78.9k"
   }
 ]
