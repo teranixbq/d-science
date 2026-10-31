@@ -1,32 +1,32 @@
 [
   {
-    "id": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 9 days ago",
-    "download_text": "95.9k"
-  },
-  {
-    "id": "RecursiveSI/flint",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "8.5k"
-  },
-  {
     "id": "Nanbeige/Nanbeige4.3-33B",
     "pipeline_tag": "Text Generation",
-    "updated_text": "Updated today",
-    "download_text": "2.8k"
+    "updated_text": "Updated 3 days ago",
+    "download_text": "13.8k"
   },
   {
-    "id": "XHToken/Spark-X2.6-4B",
+    "id": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 14 days ago",
+    "download_text": "156.4k"
+  },
+  {
+    "id": "LiquidAI/LFM3-1.7B",
     "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 5 days ago",
-    "download_text": "4.7k"
+    "updated_text": "Updated 2 days ago",
+    "download_text": "32.9k"
   },
   {
-    "id": "black-forest-labs/flux-3-image-klein-comfy",
-    "pipeline_tag": "Image To Image",
-    "updated_text": "Updated 9 days ago",
-    "download_text": "700.7k"
+    "id": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+    "pipeline_tag": "Automatic Speech Recognition",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "24.4k"
+  },
+  {
+    "id": "mistralai/Mistral-Large-4-1T-A52B",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "2.9k"
   }
 ]
