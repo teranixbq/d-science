@@ -1,32 +1,32 @@
 [
   {
-    "id": "Nanbeige/Nanbeige4.3-33B",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 4 days ago",
-    "download_text": "15.8k"
-  },
-  {
-    "id": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+    "id": "moonshotai/Kimi-K3.1-Pro",
     "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 15 days ago",
-    "download_text": "170.4k"
+    "updated_text": "Updated 1 days ago",
+    "download_text": "18.4k"
   },
   {
-    "id": "LiquidAI/LFM3-1.7B",
-    "pipeline_tag": "Text Generation",
-    "updated_text": "Updated 3 days ago",
-    "download_text": "37.6k"
+    "id": "speridlabs/idol",
+    "pipeline_tag": "Image To 3d",
+    "updated_text": "Updated 7 days ago",
+    "download_text": "19.1k"
   },
   {
-    "id": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
-    "pipeline_tag": "Automatic Speech Recognition",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "29.4k"
+    "id": "ccore/Qwen3.5-4B-3D-Coder",
+    "pipeline_tag": "",
+    "updated_text": "Updated today",
+    "download_text": "190.2k"
   },
   {
-    "id": "mistralai/Mistral-Large-4-1T-A52B",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 2 days ago",
-    "download_text": "4.6k"
+    "id": "Lightricks/LTX-2.5",
+    "pipeline_tag": "Image To Video",
+    "updated_text": "Updated 26 days ago",
+    "download_text": "2.6M"
+  },
+  {
+    "id": "burner22/numbat",
+    "pipeline_tag": "",
+    "updated_text": "Updated 12 days ago",
+    "download_text": "9.1k"
   }
 ]
