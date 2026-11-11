@@ -1,32 +1,32 @@
 [
   {
-    "id": "moonshotai/Kimi-K3.1-Pro",
-    "pipeline_tag": "Image Text To Text",
-    "updated_text": "Updated 1 days ago",
-    "download_text": "18.4k"
+    "id": "xtools-at/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic",
+    "pipeline_tag": "Text Generation",
+    "updated_text": "Updated 3 days ago",
+    "download_text": "16.7k"
   },
   {
     "id": "speridlabs/idol",
     "pipeline_tag": "Image To 3d",
-    "updated_text": "Updated 7 days ago",
-    "download_text": "19.1k"
-  },
-  {
-    "id": "ccore/Qwen3.5-4B-3D-Coder",
-    "pipeline_tag": "",
-    "updated_text": "Updated today",
-    "download_text": "190.2k"
-  },
-  {
-    "id": "Lightricks/LTX-2.5",
-    "pipeline_tag": "Image To Video",
-    "updated_text": "Updated 26 days ago",
-    "download_text": "2.6M"
-  },
-  {
-    "id": "burner22/numbat",
-    "pipeline_tag": "",
     "updated_text": "Updated 12 days ago",
-    "download_text": "9.1k"
+    "download_text": "28.2k"
+  },
+  {
+    "id": "moonshotai/Kimi-K3.1-Pro",
+    "pipeline_tag": "Image Text To Text",
+    "updated_text": "Updated 6 days ago",
+    "download_text": "33.6k"
+  },
+  {
+    "id": "MiniMaxAI/MiniMax-H3-Image",
+    "pipeline_tag": "Text To Image",
+    "updated_text": "Updated today",
+    "download_text": "143.0k"
+  },
+  {
+    "id": "ricursiveAI/Ripple-65B-Preview",
+    "pipeline_tag": "",
+    "updated_text": "Updated 1 days ago",
+    "download_text": "7.1k"
   }
 ]
